@@ -1,24 +1,66 @@
-(require 'string)
+;;
+;;  File:	insert-classname.el
+;;  Project:	XEmacsUtils 
+;;  Desc:
+;;
+;;	Emacs Lisp source
+;;  
+;;  Notes:
+;;    
+;;  Author(s):   Paul Houghton 719-527-7834 <paul.houghton@mci.com>
+;;  Created:     07/05/2003 08:10
+;;  
+;;  Revision Info: (See ChangeLog or cvs log for revision history)
+;;  
+;;	$Author$
+;;	$Date$
+;;	$Name$
+;;	$Revision$
+;;	$State$
+;;
+;;  $Id$
+;;
 
+(defvar classname nil
+  "classname to use for insert-classname")
+
+(defun get-classname()
+  "return the classname for this buffer"
+  (if (eq classname nil)
+      (progn
+	(make-variable-buffer-local classname)
+	(setq classname
+	      (file-name-sans-extension
+	       (file-name-nondirectory (buffer-file-name))))))
+  (concat classname "::")
+  )
+      
+;;;###autoload
 (defun insert-classname()
-   (interactive)
-   (insert (string-replace-match "\\..*$" (buffer-name) "::") ))
+  "insert c++ classname for the current file at point"
+  (interactive)
+  (insert (get-classname) )
+  )
 
+;;;###autoload
 (defun insert-classname-inline()
-   (interactive)
-    (insert
-"inline
+  "insert c++ inline funct impl for the current file at point"
+  (interactive)
+  (insert
+   "inline
 
-" (string-replace-match "\\..*$" (buffer-name) "::" ) )
-    (forward-line -1) ) 
+" (get-classname))
+  (forward-line -1)
+  )
 
-
+;;;###autoload
 (defun insert-classname-template()
   (interactive)
     (insert
 "template< class T >
 inline
 
-" (string-replace-match "\\..*$" (buffer-name) "<T>::" ) )
+" (get-classname) )
     (forward-line -1) ) 
 
+(provide 'insert-classname)

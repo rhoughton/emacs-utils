@@ -22,7 +22,6 @@
 (defun find-up-dir (fn)
   "Search up the path for `fn' and return the path to it
    (i.e. `../..')"
-  (interactive)
   (let ((updir "..")
 	(dir default-directory))
     (let (up)

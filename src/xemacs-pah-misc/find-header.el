@@ -15,9 +15,11 @@
 ;;; Modification History: (See end of File)
 ;;;
 
-(require 'find-file)
+(require 'ff-find-file)
 
 (defvar header-name nil)
+
+;;;###autoload
 (defun find-header()
   "Find a header file"
   (interactive)
