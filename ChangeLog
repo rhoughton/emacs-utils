@@ -1,0 +1,16 @@
+2003-07-05  Paul Houghton 719-527-7834  <paul.houghton@mci.com>
+
+	* README: created
+
+	* NEWS: created
+
+	* Makefile.am: created
+
+	* INSTALL: generated w/ automake -ac
+
+	* ChangeLog: created
+
+	* COPYING: generated w/ automake -ac
+
+	* AUTHORS: created
+
