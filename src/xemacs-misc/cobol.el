@@ -1,3 +1,6 @@
+;;; PAH - Snarfed from sourceforge:cobolforgcc
+;;; PAH - change - syntax entry to be part of a symbol
+
 ;;; Cobol mode for GNU Emcas (version 2.00, Mar 01, 2000)
 ;;; There does not seem to be a maintainer for this mode, and none
 ;;; of the email addresses for it are good.  So, I've made it
@@ -147,7 +150,7 @@ to begin a continuation line.  Normally ?-")
   (setq cobol-mode-syntax-table (make-syntax-table))
   (modify-syntax-entry ?\; "w" cobol-mode-syntax-table)
   (modify-syntax-entry ?+ "." cobol-mode-syntax-table)
-  (modify-syntax-entry ?- "." cobol-mode-syntax-table)
+  (modify-syntax-entry ?- "_" cobol-mode-syntax-table)
 ;  (modify-syntax-entry ?* "." cobol-mode-syntax-table)
 ; Apostrophe's use in comments are treated as open quotes without this
   (modify-syntax-entry ?* "<" cobol-mode-syntax-table)
@@ -250,8 +253,9 @@ to begin a continuation line.  Normally ?-")
     (define-abbrev cobol-mode-abbrev-table  ";ty"  "type" nil)
     (define-abbrev cobol-mode-abbrev-table  ";w"   "write" nil)))
 
-(defvar not-a-comment "^......[^\\*\\n]")
-
+;(defvar not-a-comment "^\\(......[^\\*\\n]\\)|\\(..................[0-9 ][0-9 ][0-9 ][0-9 ][0-9 ][0-9 ][^\\*]\\)")
+;(defvar not-a-comment "^..................[0-9 ][0-9 ][0-9 ][0-9 ][0-9 ][0-9 ][^\\*]")
+(defvar not-a-comment "^[^\\*]")
 (defvar is-a-comment "^......\\*")
 
 (defvar cobol-usage-words
@@ -288,6 +292,26 @@ to begin a continuation line.  Normally ?-")
    "W\\(HEN\\|ITH\\|RITE\\)\\)[ \.\n]" ;[^-_A-Za-z0-9]?"
 ))
 
+(defvar pah-cobol-verbs
+  (concat
+   "\\<\\("
+   "ACCEPT\\|ADD\\|AND\\|ASSIGN\\|AT\\|"
+   "CALL\\|CANCEL\\|CLOSE\\|COMPUTE\\|CONTAINS\\|CONTINUE\\|COPY\\|"
+   "DECLARE\\|DEPENDING[ \t]+ON\\|DELIMITED[ \t]+BY\\|DISPLAY\\|DIVIDE\\|"
+   "ELSE\\|ENTRY\\|EVALUATE\\|EXIT\\|FOR\\|FROM\\|"
+   "GIVING\\|GOBACK\\|"
+   "IF\\|IN\\|INITIALIZE\\|INTO\\|INSPECT\\|INDEX\\|LESS\\|"
+   "MERGE\\|MOVE\\|MULTIPLY\\|NEXT\\|SENTENCE\\|OCCURS\\|OPEN\\|OR\\|"
+   "PERFORM\\|PIC\\|POINTER\\|"
+   "READ\\|REDEFINES\\|REMAINDER\\|RENAME\\|REPLACE\\|REPLACING\\|RETURNS\\|RETURNING\\|REWRITE\\|"
+   "SEARCH\\|SELECT\\|SEQUENTIAL\\|SET\\|SORT\\|SPECIAL-NAMES\\|"
+   "STOP\\|STRING\\|START\\|STATUS\\|"
+   "THEN\\|THAN\\|THROUGH\\|THRU\\|TO\\|TRAILING\\|"
+   "UNTIL\\|UPON\\|USE\\|USING\\|VALUE\\|VARYING\\|"
+   "WHEN\\|WITH\\|WRITE"
+   "\\)\\>")
+  )
+
 (defvar cobol-divisions
     (concat not-a-comment 
 	    "[ \t]*\\(IDENTIFICATION\\|DATA\\|ENVIRONMENT\\|PROCEDURE\\)[ \t]+\\(DIVISION\\)" ))
@@ -300,7 +324,7 @@ to begin a continuation line.  Normally ?-")
   (concat not-a-comment	"[ \t]*\\([-A-Za-z0-9]+\\)[ \t]+\\(SECTION\\)\\."))
 
 (defvar cobol-paragraphs
-  (concat not-a-comment "\\([-A-Za-z0-9]+\\)\\.$"))
+  (concat not-a-comment "\\([-A-Za-z0-9]+\\)\\.[ \t]*"))
 
 (defvar cobol-constants
   (concat
@@ -310,18 +334,18 @@ to begin a continuation line.  Normally ?-")
 
 (defvar cobol-font-lock-keywords
   (list
-   (list cobol-data-types '(1 font-lock-type-face t))
-   (list cobol-verbs '(1 font-lock-keyword-face t))
-   (list cobol-scope-delimiters '(1 font-lock-keyword-face t))
-   (list cobol-modifier-words '(1 font-lock-keyword-face t))
-   (list cobol-usage-words '(1 font-lock-type-face t))
-   (list cobol-divisions '(1 font-lock-constant-face t) '(2 font-lock-string-face t))
-   (list cobol-sections '(1 font-lock-constant-face t) '(2 font-lock-string-face t))
-   (list cobol-paragraphs '(1 font-lock-constant-face t))
-   (list cobol-constants '(1 font-lock-constant-face t))
-   (list cobol-prog-info '(1 font-lock-reference-face t))
    '("^......\\(\\*.*\\)" 1 font-lock-comment-face t
 )
+   (list cobol-data-types	    '(1 font-lock-type-face t))
+   (list cobol-verbs		    '(1 font-lock-keyword-face t))
+   (list cobol-scope-delimiters	    '(1 font-lock-keyword-face t))
+   (list cobol-modifier-words	    '(1 font-lock-keyword-face t))
+   (list cobol-usage-words	    '(1 font-lock-type-face t))
+   (list cobol-divisions	    '(1 font-lock-preprocessor-face t) '(2 font-lock-string-face t))
+   (list cobol-sections		    '(1 font-lock-preprocessor-face t) '(2 font-lock-string-face t))
+   (list cobol-paragraphs	    '(1 font-lock-warning-face t))
+   (list cobol-constants	    '(1 font-lock-preprocessor-face t))
+   (list cobol-prog-info	    '(1 font-lock-reference-face t))
    ))
 
 
@@ -420,6 +444,8 @@ with no args, if that value is non-nil.
   (make-local-variable 'require-final-newline)
   (setq require-final-newline t)
   (setq fill-column 70)
+  (make-local-variable 'truncate-lines)
+  (setq truncate-lines t)
   ;; Font lock support
   (make-local-variable 'font-lock-defaults)
   (setq font-lock-defaults '(cobol-font-lock-keywords nil t))
