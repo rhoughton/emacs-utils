@@ -1,0 +1,10 @@
+# $Id$
+# $Name$
+font lock for FPI types
+option to not prompt for comments
+menus
+no spaces when entering element, etc., names
+form buffer for declarations
+read catalog and find referenced modules
+Lee Quin-style declarations
+ESC TAB bound to info-complete-tag in some Emacs/XEmacs
