@@ -24,11 +24,12 @@
 (defvar classname nil
   "classname to use for insert-classname")
 
+(make-variable-buffer-local 'classname)
+
 (defun get-classname()
   "return the classname for this buffer"
   (if (eq classname nil)
       (progn
-	(make-variable-buffer-local classname)
 	(setq classname
 	      (file-name-sans-extension
 	       (file-name-nondirectory (buffer-file-name))))))
