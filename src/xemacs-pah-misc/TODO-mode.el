@@ -104,21 +104,4 @@ See `center-line' for more info."
 	    (center-line))
 	(forward-line 1)))))
 
-(defun center-line ()
-  "Center the line point is on, within the width specified by `fill-column'.
-This means adjusting the indentation so that it equals
-the distance between the end of the text and `fill-column'."
-  (interactive)
-  (save-excursion
-    (let (line-length)
-      (beginning-of-line)
-      (delete-horizontal-space)
-      (end-of-line)
-      (delete-horizontal-space)
-      (setq line-length (current-column))
-      (beginning-of-line)
-      (indent-to 
-	(+ left-margin 
-	   (/ (- fill-column left-margin line-length) 2))))))
-
 ;;; todo-mode.el ends here
