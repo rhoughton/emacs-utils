@@ -27,6 +27,14 @@ elisp_sources	=				\
 	find-up-dir.el				\
 	insert-classname.el
 
+XEmacs_el_sources	=			\
+	$(elisp_sources)			\
+	$(AUTOLOAD_PATH)/_pkg.el		\
+	$(AUTOLOAD_PATH)/auto-autoloads.el
+
+
+#	$(AUTOLOAD_PATH)/custom-load.el
+
 XEmacs_pkg_name	= xemacs-pah-misc
 
 XEmacs_lisp_dir	= $(lispdir)/lisp/$(XEmacs_pkg_name)
@@ -38,11 +46,11 @@ PKG_TYPE		= regular
 AUTOLOAD_PATH		= .
 AUTOLOAD_PACKAGE_NAME 	= (setq autoload-package-name \"$(XEmacs_pkg_name)\")
 
+ELCS	=	$(XEmacs_el_sources:.el=.elc)
+
 CLEANFILES		= $(ELCS)
 
 hide = @
-
-ELCS	=	$(elisp_sources:.el=.elc)
 
 SUFFIXES = .elc .el
 
@@ -51,7 +59,7 @@ SUFFIXES = .elc .el
 		-eval "(setq load-path (append '(\".\") load-path))" \
 		-f batch-byte-compile $^
 
-$(AUTOLOAD_PATH)/_pkg.el: configure.ac
+$(AUTOLOAD_PATH)/_pkg.el: $(top_srcdir)/configure.ac
 	@echo Creating $@
 	@echo ";;;###autoload" > $@
 	@echo "(package-provide '$(PACKAGE_NAME)" >> $@
@@ -64,13 +72,13 @@ $(AUTOLOAD_PATH)/auto-autoloads.el : $(elisp_sources) $(AUTOLOAD_PATH)/_pkg.el
 		-l autoload -f batch-update-directory $(AUTOLOAD_PATH)
 	@rm -f $(AUTOLOAD_PATH)/auto-autoloads.el~
 
-$(AUTOLOAD_PATH)/custom-load.el : $(elisp_sources)
-	$(EMACS) $(VANILLA) -batch -l cus-dep 				\
-		-f Custom-make-dependencies $(AUTOLOAD_PATH)
+#$(AUTOLOAD_PATH)/custom-load.el : $(elisp_sources)
+#	$(EMACS) $(VANILLA) -batch -l cus-dep 				\
+#		-f Custom-make-dependencies $(AUTOLOAD_PATH)
 
 XEmacs_install: $(ELCS)
 	$(hide) $(mkinstalldirs) $(DESTDIR)$(XEmacs_lisp_dir)
-	$(hide) for f in $(elisp_sources) $(ELCS) ; do   \
+	$(hide) for f in $(XEmacs_el_sources) $(ELCS) ; do   \
 	  $(INSTALL) $$f $(DESTDIR)$(XEmacs_lisp_dir) ;	     \
 	  echo "Installed $(DESTDIR)$(XEmacs_lisp_dir)/$$f"; \
 	done
