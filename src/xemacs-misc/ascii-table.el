@@ -1,5 +1,28 @@
-;; ----------
-;; Snarfed from Steve Humble
+;;
+;;  File:	ascii-table.el
+;;  Project:	XEmacsUtils 
+;;  Desc:
+;;
+;;	Emacs Lisp source for ascii-table function
+;;  
+;;  Notes:
+;;    
+;;  Author(s):  Steve Humble
+;;		Paul Houghton 719-527-7834 <paul.houghton@mci.com>
+;;  Created:    07/05/2003 09:17
+;;  
+;;  Revision Info: (See ChangeLog or cvs log for revision history)
+;;  
+;;	$Author$
+;;	$Date$
+;;	$Name$
+;;	$Revision$
+;;	$State$
+;;
+;;  $Id$
+;;
+
+;;;###autoload
 (defun ascii-table (new)
   "Show the buffer *Ascii Table* or make one.
 Make a new one if NEW (or prefix arg) is non-nil."
