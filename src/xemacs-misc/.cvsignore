@@ -1,2 +1,5 @@
 Makefile
 Makefile.in
+_pkg.el
+auto-autoloads.el
+custom-load.el
