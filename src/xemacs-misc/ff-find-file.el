@@ -881,6 +881,6 @@ That name was previously determined by `ff-which-function-are-we-in'."
         (goto-char (point-min))
         (search-forward ff-function-name nil t))))
 
-(provide 'find-file)
+(provide 'ff-find-file)
 
 ;;; find-file.el ends here
