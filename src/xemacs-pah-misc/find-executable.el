@@ -47,15 +47,17 @@ then (find-executable \"diff\") would return \"/usr/bin/diff\"."
 						  (length path)))))
 		(nreverse list))
 	    (list "/bin" "/usr/bin" "/usr/local/bin")))))
-    (let (abs-exec) "")    
-    (while path-list
-      (if (stringp (car path-list))
-	  (let ((abs-prog (expand-file-name prog (car path-list))))
-	    (if (file-executable-p abs-prog)
-		(setq path-list nil
-		      abs-exec abs-prog))))
-      (setq path-list (cdr path-list)))
-    abs-exec))
+    (let (abs-exec)
+      (setq abs-exec nil)
+      (while path-list
+	(if (stringp (car path-list))
+	    (let ((abs-prog (expand-file-name prog (car path-list))))
+	      (if (file-executable-p abs-prog)
+		  (setq path-list nil
+			abs-exec abs-prog))))
+	(setq path-list (cdr path-list)))
+      abs-exec))
+  )
 
 (provide 'find-executable)
 
