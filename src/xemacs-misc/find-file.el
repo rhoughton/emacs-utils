@@ -857,9 +857,7 @@ checks between these characters."
 possibly on part of the directory name and the name of the file 
 passed in."
   (ff-string-match "\\(.*\\)/\\([^/]+\\)/\\([^.]+\\).\\([^/]+\\)$" arg)
-  (let ((path (if (match-beginning 1) 
-		  (substring arg (match-beginning 1) (match-end 1)) nil))
-	(dire (if (match-beginning 2) 
+  (let ((dire (if (match-beginning 2) 
 		  (substring arg (match-beginning 2) (match-end 2)) nil))
 	(file (if (match-beginning 3) 
 		  (substring arg (match-beginning 3) (match-end 3)) nil))
