@@ -47,6 +47,6 @@
 ;;; Set XEmacs mode
 ;;;
 ;;; Local Variables:
-;;; mode Emacs-lisp
+;;; mode: Emacs-lisp
 ;;; End:
 
