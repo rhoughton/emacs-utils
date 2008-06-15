@@ -262,7 +262,8 @@ the preceding slash.  The star represents all the subdirectories except
     ("\\.HH$"  (".CC"))
 
     ("\\.cxx$" (".hh" ".h"))
-    ("\\.cpp$" (".hh" ".h"))
+    ("\\.cpp$" (".hpp" ".hh" ".h"))
+    ("\\.hpp$" (".cpp"))
     )
   "*Alist of extensions to find given the current file's extension.
 
