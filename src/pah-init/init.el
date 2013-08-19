@@ -215,6 +215,8 @@
 		  (setq ksh-case-indent 2)
 		  )))
 
+;; fontlock graphical feedback broken
+(setq progress-feedback-use-echo-area t)
 
 ; Auto-mode-alist - The mode to use for specific file names
 

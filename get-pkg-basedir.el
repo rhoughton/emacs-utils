@@ -19,7 +19,7 @@
 ;;	$State$
 ;;
 ;;  $Id$
-;;
+;;;
 (defun get-pkg-basedir ()
   "Return the base dir for installing elisp packages"
   (setq pkg-base-dir "")
