@@ -1,25 +1,13 @@
 ;;
 ;;  File:	get-pkg-basedir.el
-;;  Project:	EmacsTemplates 
+;;  Project:	XEmacsUtils
 ;;  Desc:
 ;;
 ;;	Return the base package dir for XEmacs or GNU Emacs
 ;;  
-;;  Notes:
-;;    
-;;  Author(s):   Paul Houghton <pahoughton@users.sourceforge.net>
+;;  Author(s):   Paul Houghton <paul4hough@gmail.com>
 ;;  Created:     05/27/2003 07:18
 ;;  
-;;  Revision History: (See ChangeLog or cvs log for revision history)
-;;  
-;;	$Author$
-;;	$Date$
-;;	$Name$
-;;	$Revision$
-;;	$State$
-;;
-;;  $Id$
-;;;
 (defun get-pkg-basedir ()
   "Return the base dir for installing elisp packages"
   (setq pkg-base-dir "")

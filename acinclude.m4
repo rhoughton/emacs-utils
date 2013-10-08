@@ -5,20 +5,8 @@
 #
 #   Project specific m4 macros
 #
-# Notes:
-#
-# Author(s):   Paul Houghton <pahoughton@users.sourceforge.net>
+# Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     06/01/2003 07:07
-#
-# Revision Info: (See ChangeLog or cvs log for revision history)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
 #
 
 AC_DEFUN([PAH_PROG_EMACS],
