@@ -25,7 +25,7 @@ elisp_sources	=				\
 	cobol.el				\
 	ascii-table.el				\
 	ff-find-file.el				\
-	php-mode.el
+	puppet-mode.el
 
 XEmacs_el_sources	=			\
 	$(elisp_sources)			\
@@ -67,8 +67,8 @@ $(AUTOLOAD_PATH)/_pkg.el: $(top_srcdir)/configure.ac
 $(AUTOLOAD_PATH)/auto-autoloads.el : $(elisp_sources) $(AUTOLOAD_PATH)/_pkg.el
 	$(EMACS) $(VANILLA) -batch \
 		-l autoload 	\
-		-f batch-update-directory-autoloads 	\
-		"$(AUTOLOAD_PACKAGE_NAME)" $(AUTOLOAD_PATH)
+		-f batch-update-autoloads 	\
+		. $@
 	@rm -f $(AUTOLOAD_PATH)/auto-autoloads.el~
 
 $(AUTOLOAD_PATH)/custom-load.el : $(elisp_sources)
