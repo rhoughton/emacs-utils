@@ -59,7 +59,7 @@
  '(mail-user-agent 'message-user-agent)
  '(ldap-host-parameters-alist '(("teamnet-dev" base "o=WorldCom, c=US" scope subtree))
 )
- '(message-default-mail-headers "BCC: paul.houghton@wcom.com\nReply-to: paul.houghton@wcom.com\n")
+ '(message-default-mail-headers "Reply-to: paul4hough@gmail.com\n")
  '(toolbar-mail-reader 'vm)
  '(dired-gnutar-program "/Tools/bin/tar")
  '(toolbar-news-use-separate-frame nil)

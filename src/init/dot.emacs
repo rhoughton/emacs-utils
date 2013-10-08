@@ -1,22 +1,12 @@
 ;;;
-;;; Title:	emacs
-;;; Project:	Emacs
+;;; Title:	dot.emacs
+;;; Project:	XEmacsUtils
 ;;; Desc:
-;;; 
-;;;	Xemacs Initialization file. 
-;;; 
-;;; Notes:
-;;; 
-;;; Author:	Paul A. Houghton - (houghton@cshore.wcom.com)
+;;;
+;;;	Xemacs Initialization file.
+;;;
+;;; Author:	Paul A. Houghton <paul4hough@gmail.com>
 ;;; Created:	12/26/96 10:47
-;;; 
-;;; Revision History: (See end of file for Revision Log)
-;;;
-;;;	Last Mod By:    $Author$
-;;;	Last Mod:	$Date$
-;;;	Version:	$Revision$
-;;;
-;;;	$Id$
 
 (if (string-match "XEmacs\\|Lucid" emacs-version)
     (load (concat (getenv "HOME")
@@ -55,28 +45,6 @@
 
 ;; (message "Load .emacs  (emacs) done")
 ))
-
-;;; 
-;;; $Log$
-;;; Revision 1.1  2008/04/24 15:15:03  Paul
-;;; *** empty log message ***
-;;;
-;;; Revision 1.6  2003/06/02 07:10:30  houghton
-;;; Changed for cport init errors
-;;;
-;;; Revision 1.5  2003/05/18 10:28:40  houghton
-;;; Changed to work w/ both Xemacs and GNU Emacs
-;;;
-;;; Revision 1.4  2003/05/16 09:38:44  houghton
-;;; Changed to load ~/.xemacs/init.el
-;;;
-;;; Revision 1.3  1999/06/22 12:27:49  houghton
-;;; Complete rework to use ~/.xemacs/* files.
-;;;
-;;; Revision 1.2  1999/04/28 09:12:59  houghton
-;;; Merge with cmore changes.
-;;;
-;;; 
 
 ;;; Local Variables:
 ;;; mode:emacs-lisp

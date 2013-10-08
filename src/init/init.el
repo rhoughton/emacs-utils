@@ -1,31 +1,35 @@
 ;;
-;;  File:	init.el
-;;  Project:	XEmacsUtils
+;;  File:	template-insert.el
+;;  Project:	EmacsTemplates
 ;;  Desc:
 ;;
-;;	XEmacs initialization
-;;  
-;;  Notes:
-;;    
-;;  Author(s):   Paul Houghton <paul.houghton@mci.com>
-;;  Created:     08/17/2001 13:20
-;;  
-;;  Revision History: (See ChangeLog for Details)
-;;  
-;;	$Author$
-;;	$Date$
-;;	$Name$
-;;	$Revision$
-;;	$State$
+;;	Insert a template into the current buffer.
 ;;
-;;  $Id$
+;;  Notes:
+;;
+;;  Author(s):   Paul Houghton <pahoughton@users.sourceforge.net>
+;;  Created:     08/17/2001 13:20
+;;
+;;  Revision History: (See ChangeLog for Details)
+;;
+;;	$Author: paul $
+;;	$Name:  $
+;;	$Date: 2012/03/28 09:14:43 $
+;;	$Revision: 1.12 $
+;;	$State: Exp $
+;;
+;;  $Id: init.el,v 1.12 2012/03/28 09:14:43 paul Exp $
 ;;
 
 ;;
 ;; We need to load custom before initialization
 ;;
 (setq custom-file (concat (getenv "HOME")
-              "/.xemacs/customize.el" ))
+              "/.xemacs/customize-"
+              (number-to-string emacs-major-version)
+              "."
+              (number-to-string emacs-minor-version)
+	      ".el"))
 
 (let ((real-custom-file custom-file))
   (setq custom-file "nonsense")
@@ -34,62 +38,53 @@
 	    `(lambda () (setq custom-file ,real-custom-file)))
   )
 
-; Load OS specfic init
-(let ((os-init-fn (concat (getenv "HOME")
-			  "/.xemacs/init-" (format "%s" system-type))))
-  (if (file-readable-p os-init-fn)
-      (load os-init-fn)))
+(load (concat (getenv "HOME")
+              "/.xemacs/init-" (format "%s" system-type)))
 
-; Load host specific init
-(let ((host-init-fn (concat (getenv "HOME")
-			    "/.xemacs/init-" (system-name))))
-  (if (file-readable-p os-init-fn)
-      (load host-init-fn)))
-
-
-(mwheel-install)
 
 (require 'dired)
 (require 'font-lock)
+(mwheel-install)
 
 ; Frame & Icon title
 (setq-default frame-title-format (concat "XEmacs: %b@" (system-name)))
 (setq-default frame-icon-title-format (concat "XEmacs: %b@" (system-name)))
 
 ; My Email Address
-;; (setq user-mail-address (or (getenv "REPLYTO")
-;;			    "paul.houghton@mci.com"))
+(setq user-mail-address (or (getenv "REPLYTO")
+			    "paul.houghton@mci.com"))
+
 
 ;; load minibuffer history
-(savehist-load)
+;(savehist-load)
 
 ;;
 ;; func-menu Auto loads
 ;;
-; (autoload 'fume-add-menubar-entry			"func-menu"
-;   "Add `Function' menu to the menu bar" )
-; (autoload 'mouse-function-menu				"func-menu"
-;   "Popup function menu" t)
-; (autoload 'fume-mouse-function-goto			"func-menu"
-;   "Goto function clicked on or prompt in minibuffer" t )
-; (autoload 'fume-prompt-function-goto			"func-menu"
-;   "Goto function prompted for in minibuffer" t )
+(autoload 'fume-add-menubar-entry			"func-menu"
+  "Add `Function' menu to the menu bar" )
+(autoload 'mouse-function-menu				"func-menu"
+  "Popup function menu" t)
+(autoload 'fume-mouse-function-goto			"func-menu"
+  "Goto function clicked on or prompt in minibuffer" t )
+(autoload 'fume-prompt-function-goto			"func-menu"
+  "Goto function prompted for in minibuffer" t )
 
 ;;
 ;; Misc auto loads
 ;;
-; (autoload 'insert-classname				"insert-classname"
-;   "Insert current classname" t )
-; (autoload 'insert-classname-inline			"insert-classname"
-;   "Insert inline funct for class" t)
-; (autoload 'insert-classname-template			"insert-classname"
-;   "Insert template funct for class" t )
+(autoload 'insert-classname				"insert-classname"
+  "Insert current classname" t )
+(autoload 'insert-classname-inline			"insert-classname"
+  "Insert inline funct for class" t)
+(autoload 'insert-classname-template			"insert-classname"
+  "Insert template funct for class" t )
 
-; (autoload 'find-header					"find-header"
-;   "find header file" t)
+(autoload 'find-header					"find-header"
+  "find header file" t)
 
-; (autoload 'goto-matching-paren				"goto-matching-paren"
-;   "Goto the matching paren" )
+(autoload 'goto-matching-paren				"goto-matching-paren"
+  "Goto the matching paren" )
 
 ; find other file
 
@@ -116,7 +111,7 @@
 (setq text-mode-hook 'turn-on-auto-fill)
 
 ; tab stops
-(setq tab-stop-list '(  4   8  12  16  20  24  28  32  36  40 
+(setq tab-stop-list '(  4   8  12  16  20  24  28  32  36  40
 		       44  48  52  56  60  64  68  72  76  80
 		       84  88  92  96 100 104 108 112 116 120
 		      124 128 132 136 140 144 148 152 156 160 ) )
@@ -132,6 +127,8 @@
 (define-key global-map 'f1		'info)
 (define-key global-map '(meta f5)	'template-insert)
 (define-key global-map 'f12		'find-header)
+(define-key global-map '(meta c)	'kill-ring-save)
+(define-key global-map '(meta v)	'yank)
 (global-unset-key '(control z))
 
 ;;
@@ -140,18 +137,18 @@
 
 
 (require 'cc-mode)
-(defun site-c-mode-common-hook () 
+(defun site-c-mode-common-hook ()
   (font-lock-mode)
   (setq c-basic-offset 2)
   (c-set-offset 'arglist-intro '+ )
-  
+
   (local-set-key    'f8			'fume-add-menubar-entry )
   (local-set-key    '(shift f8)		'fume-prompt-function-goto )
-  
+
   (local-set-key    '[(control c) (o)]  'ff-find-other-file)
   (local-set-key    '(control button3)	'ff-mouse-find-other-file )
-  
-  ; (local-set-key    '(%)		'goto-matching-paren)
+
+;;  (local-set-key    '(%)		'goto-matching-paren)
   )
 
 (add-hook 'c-mode-common-hook 'site-c-mode-common-hook)
@@ -161,7 +158,7 @@
   (local-set-key '(shift f2)   	'insert-classname-inline)
   (local-set-key '(control f2) 	'insert-classname-template)
   )
- 
+
 (add-hook 'c++-mode-hook 'site-c++-mode-hook)
 
 
@@ -171,41 +168,41 @@
 
 (defun my-cperl-hook ()
   (local-set-key    '[(control h) (f)]	'cperl-perldoc-at-point )
-  
+
   (local-set-key    'f8			'fume-add-menubar-entry )
   (local-set-key    '(shift f8)		'fume-prompt-function-goto )
-  
-  ;(local-set-key    '(%)		'goto-matching-paren)
+
+  (local-set-key    '(%)		'goto-matching-paren)
   )
 
 ;;
 ;; Dired
 ;;
 
-; (defun site-dired-load-hook () 
-;   ;; (require 'dired-x)
-;   (require 'crypt)
-;   )
+(defun site-dired-load-hook ()
+  ;; (require 'dired-x)
+  (require 'crypt)
+  )
 
-; (defun site-dired-mode-hook ()
-;   (setq dired-omit-files-p t)
-;   (setq truncate-lines t)
-;   )
+(defun site-dired-mode-hook ()
+  (setq dired-omit-files-p t)
+  (setq truncate-lines t)
+  )
 
-;(add-hook 'dired-mode-hook 'site-dired-mode-hook)
-;(setq dired-load-hook 'site-dired-load-hook)
+(add-hook 'dired-mode-hook 'site-dired-mode-hook)
+(setq dired-load-hook 'site-dired-load-hook)
 
 (defun query-really-exit ()
   "ask the user if they really want to exit XEmacs"
   (y-or-n-p "Really exit XEmacs? ")
   )
 
-; (add-hook 'kill-emacs-query-functions 'query-really-exit)
+(add-hook 'kill-emacs-query-functions 'query-really-exit)
 
 ;
 ; Psgml
 ;
-; (setq-default sgml-indent-data t)
+(setq-default sgml-indent-data t)
 
 ;;
 ;; ksh-mode
@@ -214,9 +211,10 @@
       (function (lambda ()
 		  (setq ksh-case-indent 2)
 		  )))
-
-;; fontlock graphical feedback broken
+; kluge workaround font lock crashes
 (setq progress-feedback-use-echo-area t)
+
+
 
 ; Auto-mode-alist - The mode to use for specific file names
 
@@ -227,9 +225,10 @@
 	'("\\.mk$"	. makefile-mode)
 	'("\\.mak$"	. makefile-mode)
 	'("^make\\.cfg" . makefile-mode)
-	;'("\\.sql$"	. sql-mode)
+	'("\\.sql$"	. sql-mode)
 	'("\\.ddl$"	. sql-mode)
-	;'("\\.xml$"	. xml-mode)
+	'("\\.xml$"	. xml-mode)
+	'("\\.pp$"      . puppet-mode)
 ;	'("status" . text-mode)
 ;	'("^log" . text-mode)
 ;	'("\\.dcl$" . dtd-mode)
@@ -239,7 +238,7 @@
 ;	'("\\.ent$" . dtd-mode)
 ;	'("\\.mod$" . dtd-mode)
 ;	'("\\.php$" . php-mode)
-	;'("configure.ac" . autoconf-mode)
+	'("configure.ac" . autoconf-mode)
 	)
        auto-mode-alist))
 

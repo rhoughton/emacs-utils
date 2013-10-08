@@ -1,24 +1,14 @@
 ;;
-;;  File:	init-cygwin32.el
-;;  Project:	XEmacs 
+;;  File:	init-linux.el
+;;  Project:	XEmacsUtils
 ;;  Desc:
 ;;
-;;	Emacs Lisp source
-;;  
-;;  Notes:
-;;    
-;;  Author(s):   Paul Houghton 719-527-7834 <paul.houghton@wcom.com>
-;;  Created:     05/08/2003 03:52
-;;  
-;;  Revision History: (See end of file for Revision Log)
-;;  
-;;	$Author$
-;;	$Date$
-;;	$Name$
-;;	$Revision$
-;;	$State$
+;;	Linux specific xemacs initialization
 ;;
-;;  $Id$
+;;  Notes:
+;;
+;;  Author(s):   Paul Houghton <paul4hough@gmail.com>
+;;  Created:     05/08/2003 03:52
 ;;
 
 (require 'string)
