@@ -5,3 +5,8 @@ autom4te.cache
 config.log
 config.status
 configure
+*.elc
+_pkg.el
+*~
+auto-autoloads.el
+custom-load.el
