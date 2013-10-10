@@ -9,8 +9,8 @@ before_script:
   - uname -a
   - sudo bash setup-product.bash
   - emacs --version
-  - env
   - autoconf --version
+  - env
 
 
 
