@@ -61,7 +61,7 @@
 
 
 ;; minibuffer history
-(savehist-mode)
+(savehist-mode 1)
 
 ;;
 ;; func-menu Auto loads
