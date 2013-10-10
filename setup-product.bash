@@ -14,4 +14,5 @@
 # git clone https://github.com/pahoughton/product-setup
 # bash product-setup/bin/setup-product.bash
 apt-get install emacs
+apt-get install autoconf
 touch .setup-product.stamp
