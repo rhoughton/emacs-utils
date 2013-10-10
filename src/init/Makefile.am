@@ -9,8 +9,6 @@
 # Created:     05/16/2003 04:03
 #
 
-# ping jenkins
-
 hide = @
 
 elisp_sources	= $(wildcard *.el)
