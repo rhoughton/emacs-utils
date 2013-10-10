@@ -13,3 +13,4 @@
 # grep /p.setup .gitignore > /dev/null || echo /p.setup >> .gitignore
 # git clone https://github.com/pahoughton/product-setup
 # bash product-setup/bin/setup-product.bash
+touch .setup-product.stamp
