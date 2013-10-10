@@ -6,6 +6,7 @@ notifications:
 before_script:
   - echo -e "Host heroku.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - uname -a
   - sudo bash setup-product.bash
   - emacs --version
   - env
@@ -14,7 +15,7 @@ before_script:
 
 script:
   - autoreconf
-  - configure
+  - ./configure
   - make test-system
   - make install
   
