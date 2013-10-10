@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	XEmacsUtils 
+# Project:	emacs-utils
 # Desc:
 #
 #   automake source for Makefile.in
@@ -9,13 +9,16 @@
 # Created:     07/05/2003 07:39
 #
 
-EXTRA_DIST	=				\
-	get-pkg-basedir.el
+EXTRA_DIST	=			\
+	get-pkg-basedir.el		\
+	LICENSE				\
+	README.md
 
-SUBDIRS	= src
+SUBDIRS	= src tests/unit tests/system
 
-# hack to work around automake
-NEWS AUTHORS:
-	touch $@
-README:
-	ln -s README.md $@
+test-system: check
+	$(MAKE) -C tests/system "${@}-real"
+
+clean:
+
+check-system: test-system

@@ -1,16 +1,5 @@
 ;;; todo-mode.el --- todo mode, and its idiosyncratic commands.
 
-;; Copyright (C) 1985, 1992, 1994 Paul Houghton
-
-;; Maintainer: Paul Houghton
-
-;;; Commentary:
-
-;; This package provides the fundamental text mode documented in the
-;; Emacs user's manual.
-
-;;; Code:
-
 (require 'timestamp)
 
 (defvar todo-mode-syntax-table nil
@@ -45,13 +34,14 @@ All the commands defined in Text mode are inherited unless overridden.")
 
 (if todo-mode-map
     ()
-  (setq todo-mode-map (make-sparse-keymap))
-  (set-keymap-name todo-mode-map 'todo-mode-map)
-  (define-key todo-mode-map 'f2  'insert-todo-item)
-  (define-key todo-mode-map "\t" 'indent-relative)
-  (define-key todo-mode-map "\es" 'center-line)
-  (define-key todo-mode-map "\eS" 'center-paragraph))
-
+  (if (string-match "XEmacs" (emacs-version))
+      (progn
+	(setq todo-mode-map (make-sparse-keymap))
+	(define-key todo-mode-map 'f2  'insert-todo-item)
+	(define-key todo-mode-map "\t" 'indent-relative)
+	(define-key todo-mode-map "\es" 'center-line)
+	(define-key todo-mode-map "\eS" 'center-paragraph))))
+      
 (defun todo-mode ()
   "Major mode for editing time todo file with indented paragraphs.
 In this mode, paragraphs are delimited only by blank lines.
@@ -62,7 +52,8 @@ Turning on `todo-mode' calls the value of the variable
 `todo-mode-hook', if that value is non-nil."
   (interactive)
   (kill-all-local-variables)
-  (use-local-map todo-mode-map)
+  (local-set-key    (kbd "<f2>")	'insert-todo-item)
+  (local-set-key    (kbd "TAB")	'fume-prompt-function-goto)
   (define-abbrev-table 'todo-mode-abbrev-table ())
   (setq local-abbrev-table todo-mode-abbrev-table)
   (set-syntax-table todo-mode-syntax-table)

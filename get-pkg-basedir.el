@@ -1,6 +1,6 @@
 ;;
 ;;  File:	get-pkg-basedir.el
-;;  Project:	XEmacsUtils
+;;  Project:	emacs-utils
 ;;  Desc:
 ;;
 ;;	Return the base package dir for XEmacs or GNU Emacs
@@ -34,7 +34,10 @@
 				  "/.xemacs/xemacs-packages")))))
     ( ; Not Xemacs
      if (string-match "site-lisp" (car load-path))
-	(setq pkg-base-dir (substring (car load-path) 0 (match-end 0)))
+	(progn
+	  (setq pkg-base-dir (substring (car load-path) 0 (match-end 0)))
+	  (if (not (file-writable-p pkg-base-dir))
+	      (setq pkg-base-dir (concat (getenv "HOME") "/.emacs.d/lisp"))))
       (setq pkg-base-dir ""))
     )
 )

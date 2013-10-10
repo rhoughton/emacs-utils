@@ -1,12 +1,12 @@
 ;;
-;;  File:	customize-21.4.el
+;;  File:	customize-24.3.el
 ;;  Project:	emacs-utils
 ;;  Desc:
 ;;
-;;	XEmacs 21.4 customization
+;;	Emacs customization
 ;;
 ;;  Author(s):   Paul Houghton <paul4hough@gmail.com>
-;;  Created:     05/16/2003 04:20
+;;  Created:     2013-10-08 10:09
 ;;
 
 ;;
@@ -15,15 +15,17 @@
 (custom-set-variables
  '(cvs-display-full-path nil)
  '(cvs-edit-confirm (quote changed))
+ '(debug-on-error t)
  '(dired-verify-modtimes nil)
+ '(display-time-mode t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(explicit-bash-args (quote ("-li")))
  '(mode-compile-make-options "" t)
- '(recent-files-add-menu-before "Open...")
- '(recent-files-menu-path (quote ("File")))
- '(recent-files-non-permanent-submenu nil)
+ '(save-place t nil (saveplace))
+ '(sh-indentation 2)
  '(shell-file-name "/bin/bash")
- '(toolbar-mail-reader (quote vm)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 ;; (custom-set-faces
 ;; '(default ((t (:size "8pt" :family "Courier New"))) t))
 (custom-set-faces

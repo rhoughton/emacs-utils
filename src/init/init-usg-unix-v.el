@@ -1,9 +1,9 @@
 ;;
 ;;  File:	init-usg-unix-v.el
-;;  Project:	XEmacsUtils
+;;  Project:	emacs-utils
 ;;  Desc:
 ;;
-;;	usg-unix specific xemacs initializations
+;;	Sun specific xemacs initializations
 ;;
 ;;  Notes:
 ;;

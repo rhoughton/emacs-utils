@@ -1,23 +1,12 @@
-;;;
-;;; Title:	find-up-dir.el
-;;; Project:	XEmacs
-;;; Desc:
-;;; 
-;;;	
-;;; 
-;;; Notes:
-;;; 
-;;; Author:	Paul Houghton - (paul.houghton@wcom.com)
-;;; Created:	03/03/01 03:35
-;;; 
-;;; Revision History: (See end of file for Revision Log)
-;;;
-;;;	Last Mod By:    $Author$
-;;;	Last Mod:	$Date$
-;;;	Version:	$Revision$
-;;;
-;;;	$Id$
-
+;;
+;; Title:	find-up-dir.el
+;; Project:	emacs-utils
+;; Desc:
+;; 
+;;	find fn in parent directory
+;; 
+;; Author:	Paul Houghton <paul4hough@gmail.com>
+;; Created:	03/03/01 03:35
 
 (defun find-up-dir (fn)
   "Search up the path for `fn' and return the path to it
@@ -40,13 +29,9 @@
 
 (provide 'find-up-dir)
 
-;;; 
-;;; $Log :$
-;;; 
-
-;;; Set XEmacs mode
-;;;
-;;; Local Variables:
-;;; mode: Emacs-lisp
-;;; End:
+;; Set XEmacs mode
+;;
+;; Local Variables:
+;; mode: Emacs-lisp
+;; End:
 

@@ -1,6 +1,6 @@
 ;;;
 ;;; Title:	dot.emacs
-;;; Project:	XEmacsUtils
+;;; Project:	emacs-utils
 ;;; Desc:
 ;;;
 ;;;	Xemacs Initialization file.

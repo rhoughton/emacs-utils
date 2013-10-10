@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	XEmacsUtils
+# Project:	emacs-utils
 # Desc:
 #
 #   Build rules and targets
@@ -11,9 +11,10 @@
 
 hide = @
 
-elisp_sources	= $(wildcard *.el);
+elisp_sources	= $(wildcard *.el)
+EXTRA_DIST	= $(elisp_sources)
 
-INSTALL_DIR	= $(HOME)/.xemacs
+INSTALL_DIR	= $(HOME)/.emacs.d
 
 CLEANFILES	= $(ELCS)
 ELCS		= $(elisp_sources:.el=.elc)
@@ -21,17 +22,20 @@ SUFFIXES 	= .elc .el
 
 .el.elc:
 	$(EMACS) -batch -q					    \
-		-eval "(setq load-path (append '(\".\") load-path))" \
+		-eval "(setq load-path (append '(\".\") '(\"../pah-misc\") load-path))" \
 		-f batch-byte-compile $^
 $(INSTALL_DIR):
 	mkdir $@
 
 $(INSTALL_DIR)/%.el : %.el
 	$(hide) [ ! -f "$@" ] || mv "$@" "$@.`date +%F-%H%M%S`.bak"
-	$(hide) install -p -c -m 444 "$^" "$@"
+	$(hide) $(INSTALL) -p -m 444 "$^" "$@"
 	@echo "+ Installed $@"
 
-all-hook: $(ELCS)
+all: $(ELCS)
+check: all
+install-data-hook: $(INSTALL_DIR) $(elisp_sources:%=$(INSTALL_DIR)/%)
 
-install-data-hook: $(INSTALL_DIR) $(ELISP_SOURCES:%=$(INSTALL_DIR)/%)
+%: 
+	$(MAKE) -C .. $@
 

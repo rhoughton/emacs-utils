@@ -10,3 +10,6 @@ _pkg.el
 *~
 auto-autoloads.el
 custom-load.el
+/clones
+/test_tmp
+/emacs-utils*tar.gz

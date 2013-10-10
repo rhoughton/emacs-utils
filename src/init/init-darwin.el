@@ -1,6 +1,6 @@
 ;;
 ;;  File:	init-darwin
-;;  Project:	XEmacsUtils
+;;  Project:	emacs-utils
 ;;  Desc:
 ;;
 ;;	Mac (OSX-Darwin) specific xemacs initialization
@@ -9,8 +9,6 @@
 ;;  Created:     05/27/2010 09:52
 ;;
 
-(require 'string)
-
 (defvar system-short-name)
 (if (string-match "\\." (system-name))
     (setq system-short-name (system-name))
@@ -18,10 +16,6 @@
 )
 
 (setq system-cc-search-directories (list "/usr/include"))
-;      (list "/opt/SUNWspro/WS6U2/include/CC/*"
-;	    "/opt/SUNWspro/WS6U2/include/cc/*"
-;	    "/usr/include/*" ))
-
 ;
 ; From: http://blog.lathi.net/articles/2007/11/07/sharing-the-mac-clipboard-with-emacs
 (defun copy-from-osx ()

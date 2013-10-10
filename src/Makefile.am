@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	XEmacsUtils 
+# Project:	emacs-utils
 # Desc:
 #
 #   automake source for Makefile.in
@@ -9,3 +9,6 @@
 # Created:     07/05/2003 07:55
 #
 SUBDIRS	= pah-misc init
+
+%: 
+	$(MAKE) -C .. $@

@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	XEmacsUtils 
+# Project:	emacs-utils 
 # Desc:
 #
 #   automake source for Makefile.in
@@ -12,64 +12,99 @@
 hide = @
 
 elisp_sources	=				\
-        TODO-mode.el				\
-        _pkg.el					\
         ascii-table.el				\
-        auto-autoloads.el			\
-        cobol.el				\
-        custom-load.el				\
-        ff-find-file.el				\
+        cobol-mode.el				\
         find-executable.el			\
         find-header.el				\
         find-up-dir.el				\
         insert-classname.el			\
-        log-mode.el				\
+        timestamp.el				\
+        todo-mode.el
+
+clone_elisp_sources	=			\
+	markdown-mode.el			\
         php-mode.el				\
-        puppet-mode.el				\
-        timestamp.el
+        puppet-mode.el
 
-XEmacs_elisp_sources	=			\
+Emacs_elisp_sources	=			\
 	$(elisp_sources)			\
-	_pkg.el					\
-	auto-autoloads.el			\
-	custom-load.el
+	$(clone_elisp_sources)
 
-XEmacs_lisp_dir	= $(lispdir)/lisp/pah-misc
+EXTRA_DIST	= $(elisp_sources) subdirs.el
 
-CLEANFILES	= $(ELCS)
-ELCS		= $(XEmacs_el_sources:.el=.elc)
+INSTALL_LISP_DIR = $(lispdir)/pah-misc
+
 SUFFIXES 	= .elc .el
+ELCS		= $(Emacs_elisp_sources:.el=.elc)
+CLEANFILES	= $(ELCS) $(clone_elisp_sources)
+
+
+${top_srcdir}/clones/markdown-mode/markdown-mode.el: 
+	$(hide)[ -d "${top_srcdir}/clones" ] || ${mkdir_p} "${top_srcdir}/clones"
+	$(hide)cd ${top_srcdir}/clones &&					\
+	git clone git://jblevins.org/git/markdown-mode
+
+markdown-mode.el: ${top_srcdir}/clones/markdown-mode/markdown-mode.el 
+	$(hide)[ '!' -f "$@" ] || rm "$@"
+	$(hide)ln -s "$^" "$@"
+
+${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el:
+	$(hide)[ -d "${top_srcdir}/clones" ] || ${mkdir_p} "${top_srcdir}/clones"
+	$(hide)cd ${top_srcdir}/clones &&					\
+	svn checkout svn://svn.code.sf.net/p/php-mode/code/trunk php-mode-code
+
+php-mode.el: ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el
+	$(hide)[ '!' -f "$@" ] || rm "$@"
+	$(hide)ln -s "$^" "$@"
+
+${top_srcdir}/clones/puppet-syntax-emacs/puppet-mode.el:
+	$(hide)[ -d "${top_srcdir}/clones" ] || ${mkdir_p} "${top_srcdir}/clones"
+	$(hide)cd ${top_srcdir}/clones &&					\
+	git clone https://github.com/puppetlabs/puppet-syntax-emacs
+
+puppet-mode.el: ${top_srcdir}/clones/puppet-syntax-emacs/puppet-mode.el
+	$(hide)[ '!' -f "$@" ] || rm "$@"
+	$(hide)ln -s "$^" "$@"
 
 .el.elc:
-	$(EMACS) -batch -q					    \
+	$(hide)$(EMACS) -batch -q					     \
 		-eval "(setq load-path (append '(\".\") load-path))" \
 		-f batch-byte-compile $^
 
-_pkg.el: $(top_srcdir)/configure.ac
-	@echo Creating $@
-	@echo ";;;###autoload" > $@
-	@echo "(package-provide '$(PACKAGE_NAME)" >> $@
-	@echo "		 :version $(VERSION)" >> $@
-	@echo "		 :type '$(PKG_TYPE))" >> $@
+loaddefs.el: $(elisp_sources)
+	$(hide)$(EMACS) $(VANILLA) -batch					\
+		--no-site-file 						\
+		-l autoload						\
+		 --eval '(setq generated-autoload-file (concat (file-name-directory (file-truename "Makefile.am")) "loaddefs.el"))' \
+		-f batch-update-autoloads .
 
-auto-autoloads.el : $(elisp_sources) $(AUTOLOAD_PATH)/_pkg.el
-	$(EMACS) $(VANILLA) -batch \
-		-l autoload 	\
-		-f batch-update-autoloads 	\
-		. $@
-	@rm -f $(AUTOLOAD_PATH)/auto-autoloads.el~
+cus-load.el: $(elisp_sources)
+	$(hide)$(EMACS) $(VANILLA) -batch -l cus-dep 	\
+		-f custom-make-dependencies .
 
-custom-load.el : $(elisp_sources)
-	$(EMACS) $(VANILLA) -batch -l cus-dep 				\
-		-f Custom-make-dependencies $(AUTOLOAD_PATH)
-
-XEmacs_install: $(ELCS)
-	$(hide) $(mkinstalldirs) $(DESTDIR)$(XEmacs_lisp_dir)
-	$(hide) for f in $(XEmacs_el_sources) $(ELCS) ; do   \
-	  $(INSTALL) $$f $(DESTDIR)$(XEmacs_lisp_dir) ;	     \
-	  echo "Installed $(DESTDIR)$(XEmacs_lisp_dir)/$$f"; \
+Emacs_install: $(ELCS) loaddefs.el
+	$(hide) $(mkinstalldirs) "$(INSTALL_LISP_DIR)"
+	$(hide) for f in $(Emacs_elisp_sources) $(ELCS) ; do		\
+	  $(INSTALL) -p -m 644 "$$f" "$(INSTALL_LISP_DIR)" || exit 1 ;	\
+	  echo "Installed $(INSTALL_LISP_DIR)/$$f";			\
 	done
+	$(hide) $(INSTALL) subdirs.el "$(lispdir)"
+	@echo "Installed $(lispdir)/subdirs.el"
+	$(hide)if [ -f "$(lispdir)/loaddefs.el" ] ; then   \
+	  mv "$(lispdir)/loaddefs.el" 			\
+	     "$(lispdir)/loaddefs.el.bak" &&     		\
+	  cat "$(lispdir)/loaddefs.el.bak" 		\
+	      loaddefs.el					\
+	      > "$(lispdir)/loaddefs.el" || exit 1;		\
+	else							\
+	  $(INSTALL) -p -m 644 loaddefs.el "$(lispdir)";	\
+	fi
+	[ -f "$(lispdir)/loaddefs.el" ] || exit 2
 
-all-hook: $(ELCS) custom-load.elc auto-autoloads.elc _pkg.elc
+
+all: $(ELCS) cus-load.el loaddefs.el
 check: all
-install-data-hook: all XEmacs_install
+install-data-hook: all Emacs_install
+
+%: 
+	$(MAKE) -C .. $@

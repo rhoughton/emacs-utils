@@ -41,7 +41,6 @@ All the commands defined in Text mode are inherited unless overridden.")
 (if log-mode-map
     ()
   (setq log-mode-map (make-sparse-keymap))
-  (set-keymap-name log-mode-map 'log-mode-map)
   (define-key log-mode-map 'f2  'insert-timestamp)
   (define-key log-mode-map "\t" 'indent-relative)
   (define-key log-mode-map "\es" 'center-line)

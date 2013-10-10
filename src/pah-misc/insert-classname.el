@@ -1,25 +1,15 @@
 ;;
 ;;  File:	insert-classname.el
-;;  Project:	XEmacsUtils 
+;;  Project:	emacs-utils
 ;;  Desc:
 ;;
-;;	Emacs Lisp source
+;;	insert current source class name
 ;;  
 ;;  Notes:
 ;;    
-;;  Author(s):   Paul Houghton 719-527-7834 <paul.houghton@mci.com>
+;;  Author(s):   Paul Houghton <paul4hough@gmail.com>
 ;;  Created:     07/05/2003 08:10
 ;;  
-;;  Revision Info: (See ChangeLog or cvs log for revision history)
-;;  
-;;	$Author$
-;;	$Date$
-;;	$Name$
-;;	$Revision$
-;;	$State$
-;;
-;;  $Id$
-;;
 
 (defvar classname nil
   "classname to use for insert-classname")
@@ -29,12 +19,14 @@
 (defun get-classname()
   "return the classname for this buffer"
   (if (eq classname nil)
-      (progn
-	(setq classname
-	      (file-name-sans-extension
-	       (file-name-nondirectory (buffer-file-name))))))
-  (concat classname "::")
-  )
+      (if (not (eq buffer-file-name nil))
+	  (progn
+	    (setq classname
+		  (file-name-sans-extension
+		   (file-name-nondirectory (buffer-file-name)))))
+	(progn
+	  (setq classname "FIXME")))
+    (concat classname "::")))
       
 ;;;###autoload
 (defun insert-classname()

@@ -1,26 +1,14 @@
 ;;
 ;;  File:	ascii-table.el
-;;  Project:	XEmacsUtils 
+;;  Project:	emacs-utils
 ;;  Desc:
 ;;
 ;;	Emacs Lisp source for ascii-table function
 ;;  
-;;  Notes:
-;;    
 ;;  Author(s):  Steve Humble
-;;		Paul Houghton 719-527-7834 <paul.houghton@mci.com>
+;;		Paul Houghton <paul4hough@gmail.com>
 ;;  Created:    07/05/2003 09:17
 ;;  
-;;  Revision Info: (See ChangeLog or cvs log for revision history)
-;;  
-;;	$Author$
-;;	$Date$
-;;	$Name$
-;;	$Revision$
-;;	$State$
-;;
-;;  $Id$
-;;
 
 ;;;###autoload
 (defun ascii-table (new)

@@ -1,34 +1,26 @@
-;;;
-;;; Title:	find-executable.el
-;;; Project:	Emacs
-;;; Desc:
-;;; 
-;;;	Return the absolute path name for a program or and emtpy
-;;;	string if the program is not found.
-;;;
-;;;	    (find-executable "vi")
-;;;
-;;;	would return something like "/usr/bin/vi".
-;;;
-;;;	    (find-executable "not_a_program_in_path")
-;;;
-;;;     would return "".
-;;; 
-;;; Notes:
-;;;
-;;;	The ideas for this code came from 'info.el' and
-;;;      pcl-cvs.el
-;;;
-;;; Author:	Paul A. Houghton - (houghton@cshore.wcom.com)
-;;; Created:	12/29/96 16:45
-;;; 
-;;; Revision History: (See end of file for Revision Log)
-;;;
-;;;	Last Mod By:    $Author$
-;;;	Last Mod:	$Date$
-;;;	Version:	$Revision$
-;;;
-;;;	$Id$
+;;
+;; Title:	find-executable.el
+;; Project:	emacs-utils
+;; Desc:
+;; 
+;;	Return the absolute path name for a program or and emtpy
+;;	string if the program is not found.
+;;
+;;	    (find-executable "vi")
+;;
+;;	would return something like "/usr/bin/vi".
+;;
+;;	    (find-executable "not_a_program_in_path")
+;;
+;;     would return "".
+;; 
+;; Notes:
+;;
+;;	The ideas for this code came from 'info.el' and
+;;      pcl-cvs.el
+;;
+;; Author:	Paul A. Houghton <paul4hough@gmail.com>
+;; Created:	12/29/96 16:45
 
 
 (defun find-executable (prog)
@@ -60,8 +52,3 @@ then (find-executable \"diff\") would return \"/usr/bin/diff\"."
   )
 
 (provide 'find-executable)
-
-;;; 
-;;; $Log :$
-;;; 
-

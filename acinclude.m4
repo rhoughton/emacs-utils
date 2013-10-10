@@ -1,6 +1,6 @@
 #
 # File:		acinclude.m4
-# Project:	XEmacsUtils
+# Project:	emacs-utils
 # Desc:
 #
 #   Project specific m4 macros
@@ -9,24 +9,6 @@
 # Created:     06/01/2003 07:07
 #
 
-AC_DEFUN([PAH_PROG_EMACS],
-[ AC_CACHE_SAVE
-  test x"$EMACS" = xt && EMACS=
-  AC_CHECK_PROGS(EMACS, xemacs emacs, no)
-  AC_CACHE_CHECK([which version of emacs],pah_cv_emacs_type,
-    [ if test $EMACS != "no"; then
-        AC_RUN_LOG([$EMACS -batch -q -eval '(if (string-match "XEmacs\\|Lucid" emacs-version)(princ "XEmacs")(princ "GNUEmacs"))' 2> /dev/null > conftest.out])
-        pah_cv_emacs_type=`echo \`cat conftest.out\``
-        rm conftest.out
-      else
-        AC_MSG_ERROR([Sorry, did not find a usable emacs])
-      fi
-    ])
-  pah_emacs_type="$pah_cv_emacs_type"
-  AC_SUBST(pah_emacs_type)
-])
-
-  
 AC_DEFUN([PAH_PATH_LISPDIR],
 [AC_ARG_WITH(lispdir,
   AC_HELP_STRING([--with-lispdir],[Override the default lisp directory]),
