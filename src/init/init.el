@@ -21,8 +21,6 @@
 (setq custom-file (concat dotedir
                           "/customize-"
                           (number-to-string emacs-major-version)
-                          "."
-                          (number-to-string emacs-minor-version)
                           ".el"))
 
 (load-file custom-file)
