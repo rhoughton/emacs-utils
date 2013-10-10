@@ -10,7 +10,6 @@ dnl Created:     07/05/2003 07:32
 dnl
 dnl FIXME - find ispell
 
-dnl - kick jenkins (i hope)
 AC_PREREQ(2.69)
 AC_INIT( emacs-utils,
 	 1.02.00,
