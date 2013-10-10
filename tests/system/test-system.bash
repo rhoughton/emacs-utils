@@ -9,7 +9,7 @@
 # Created:     2013-10-08 11:12
 #
 
-# set -x
+#set -x
 
 topdir=$1
 if [ -z "$topdir" ] ; then

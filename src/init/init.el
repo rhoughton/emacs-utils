@@ -34,17 +34,18 @@
   ;;)
 
 (add-to-list 'load-path (concat dotedir "/lisp"))
-(let ((default-directory (concat dotedir "/lisp"))
-  (normal-top-level-add-subdirs-to-load-path)))
 
 (setq cwd default-directory)
 (setq default-directory (concat dotedir "/lisp"))
 (add-to-list 'load-path (normal-top-level-add-subdirs-to-load-path))
 (setq default-directory cwd)
 (load (concat dotedir "/lisp/loaddefs"))
-(load (concat dotedir
-              "/init-"
-              (format "%s" system-type)))
+
+; ugg system-type is gnu/linux on fedora
+(defvar init-sys-type (format "%s" system-type))
+(if (string-match-p "linux" init-sys-type)
+    (setq init-sys-type "linux"))
+(load (concat dotedir "/init-" init-sys-type))
 
 (require 'dired)
 (require 'font-lock)
@@ -79,18 +80,16 @@
 ;;
 ;; Misc auto loads
 ;;
-(autoload 'insert-classname                             "insert-classname"
+(autoload 'insert-classname             "insert-classname"
   "Insert current classname" t )
-(autoload 'insert-classname-inline                      "insert-classname"
+(autoload 'insert-classname-inline      "insert-classname"
   "Insert inline funct for class" t)
-(autoload 'insert-classname-template                    "insert-classname"
+(autoload 'insert-classname-template	"insert-classname"
   "Insert template funct for class" t )
-
-(autoload 'find-header                                  "find-header"
+(autoload 'find-header                  "find-header"
   "find header file" t)
-
-(autoload 'goto-matching-paren                          "goto-matching-paren"
-  "Goto the matching paren" )
+(autoload 'goto-matching-paren		"goto-matching-paren"
+  "Goto the matching paren")
 
 ; find other file
 
@@ -118,9 +117,11 @@
                        84  88  92  96 100 104 108 112 116 120
                       124 128 132 136 140 144 148 152 156 160 ) )
 
+;(load "package")
 ; add marmalade package repo
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;(add-to-list 'package-archives
+;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 ; show me what time it is
 (display-time)
 
@@ -228,14 +229,6 @@
 ; Psgml
 ;
 (setq-default sgml-indent-data t)
-
-;;
-;; ksh-mode
-;;
-(setq ksh-mode-hook
-      (function (lambda ()
-                  (setq ksh-case-indent 2)
-                  )))
 
 ; Auto-mode-alist - The mode to use for specific file names
 
