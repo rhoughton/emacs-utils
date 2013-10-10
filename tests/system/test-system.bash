@@ -32,7 +32,7 @@ tar xf ../emacs-utils*tar.gz
 cd emacs-utils*
 HOME="${TEST_HOME}"
 autoreconf && 
-configure --with-lispdir="${TEST_HOME}/.emacs.d/lisp" &&
+./configure --with-lispdir="${TEST_HOME}/.emacs.d/lisp" &&
 make install || exit 1
 # double install works? (had a bug w/ this b4)
 make install || exit 1
