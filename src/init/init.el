@@ -118,6 +118,9 @@
                        84  88  92  96 100 104 108 112 116 120
                       124 128 132 136 140 144 148 152 156 160 ) )
 
+; add marmalade package repo
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 ; show me what time it is
 (display-time)
 
