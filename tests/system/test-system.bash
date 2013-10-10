@@ -39,10 +39,8 @@ make install || exit 1
 echo "Feature: emacs-utils"
 
 expfiles='
-.emacs.d/customize-21.1.el
-.emacs.d/customize-21.4.el
-.emacs.d/customize-21.5.el
-.emacs.d/customize-24.3.el
+.emacs.d/customize-23.el
+.emacs.d/customize-24.el
 .emacs.d/init-cygwin32.el
 .emacs.d/init-darwin.el
 .emacs.d/init-linux.el
