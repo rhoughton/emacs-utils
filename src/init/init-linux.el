@@ -11,10 +11,9 @@
 ;;  Created:     05/08/2003 03:52
 ;;
 
-(defvar system-short-name)
-(if (string-match "\\." (system-name))
-    (setq system-short-name (system-name))
-  (setq system-short-name (string-replace-match "\\..*" (system-name) "" ) )
-)
+(defvar system-short-name (replace-regexp-in-string
+			   "\\..*"
+			   ""
+			   (system-name)))
 
 (setq system-cc-search-directories (list "/usr/include"))
