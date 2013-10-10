@@ -14,8 +14,12 @@ PHONY=check test all
 test_simple = $(top_srcdir)/test_tmp/emacs-test-simple/test-simple.el
 
 $(test_simple):
-	[ -d "$(top_srcdir)/test_tmp" ] || mkdir "$(top_srcdir)/test_tmp"
-	(cd "$(top_srcdir)/test_tmp" && git clone https://github.com/rocky/emacs-test-simple)
+	$(hide)if [ ! -f "$(top_srcdir)/test_tmp/.sloccount.skip" ] ; then  \
+	  ${mkdir_p} "$(top_srcdir)/test_tmp";				    \
+	  touch "${top_srcdir}/test_tmp/.sloccount.skip";		    \
+	fi
+	$(hide)(cd "$(top_srcdir)/test_tmp" &&				\
+	  git clone https://github.com/rocky/emacs-test-simple)
 
 #: same thing as "check"
 test: check

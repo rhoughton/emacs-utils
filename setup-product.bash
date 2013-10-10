@@ -13,4 +13,5 @@
 # grep /p.setup .gitignore > /dev/null || echo /p.setup >> .gitignore
 # git clone https://github.com/pahoughton/product-setup
 # bash product-setup/bin/setup-product.bash
+apt-get install emacs
 touch .setup-product.stamp

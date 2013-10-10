@@ -40,8 +40,10 @@ CLEANFILES	= $(ELCS) $(clone_elisp_sources)
 
 
 ${top_srcdir}/clones/markdown-mode/markdown-mode.el: 
-	$(hide)[ -d "${top_srcdir}/clones" ] || ${mkdir_p} "${top_srcdir}/clones"
-	$(hide)cd ${top_srcdir}/clones &&					\
+	$(hide)[ -d "${top_srcdir}/clones" ] ||		\
+	  ${mkdir_p} "${top_srcdir}/clones" && 		\
+	  touch "${top_srcdir}/clones/.sloccount.skip"
+	$(hide)cd ${top_srcdir}/clones &&		\
 	git clone git://jblevins.org/git/markdown-mode
 
 markdown-mode.el: ${top_srcdir}/clones/markdown-mode/markdown-mode.el 
@@ -49,8 +51,10 @@ markdown-mode.el: ${top_srcdir}/clones/markdown-mode/markdown-mode.el
 	$(hide)ln -s "$^" "$@"
 
 ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el:
-	$(hide)[ -d "${top_srcdir}/clones" ] || ${mkdir_p} "${top_srcdir}/clones"
-	$(hide)cd ${top_srcdir}/clones &&					\
+	$(hide)[ -d "${top_srcdir}/clones" ] ||		\
+	  ${mkdir_p} "${top_srcdir}/clones" && 		\
+	  touch "${top_srcdir}/clones/.sloccount.skip"
+	$(hide)cd ${top_srcdir}/clones &&		\
 	svn checkout svn://svn.code.sf.net/p/php-mode/code/trunk php-mode-code
 
 php-mode.el: ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el
@@ -58,8 +62,10 @@ php-mode.el: ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el
 	$(hide)ln -s "$^" "$@"
 
 ${top_srcdir}/clones/puppet-syntax-emacs/puppet-mode.el:
-	$(hide)[ -d "${top_srcdir}/clones" ] || ${mkdir_p} "${top_srcdir}/clones"
-	$(hide)cd ${top_srcdir}/clones &&					\
+	$(hide)[ -d "${top_srcdir}/clones" ] ||		\
+	  ${mkdir_p} "${top_srcdir}/clones" && 		\
+	  touch "${top_srcdir}/clones/.sloccount.skip"
+	$(hide)cd ${top_srcdir}/clones &&		\
 	git clone https://github.com/puppetlabs/puppet-syntax-emacs
 
 puppet-mode.el: ${top_srcdir}/clones/puppet-syntax-emacs/puppet-mode.el
@@ -67,14 +73,14 @@ puppet-mode.el: ${top_srcdir}/clones/puppet-syntax-emacs/puppet-mode.el
 	$(hide)ln -s "$^" "$@"
 
 .el.elc:
-	$(hide)$(EMACS) -batch -q					     \
+	$(hide)$(EMACS) -batch -q				     \
 		-eval "(setq load-path (append '(\".\") load-path))" \
 		-f batch-byte-compile $^
 
 loaddefs.el: $(elisp_sources)
-	$(hide)$(EMACS) $(VANILLA) -batch					\
-		--no-site-file 						\
-		-l autoload						\
+	$(hide)$(EMACS) $(VANILLA) -batch	\
+		--no-site-file 			\
+		-l autoload			\
 		 --eval '(setq generated-autoload-file (concat (file-name-directory (file-truename "Makefile.am")) "loaddefs.el"))' \
 		-f batch-update-autoloads .
 
@@ -90,10 +96,10 @@ Emacs_install: $(ELCS) loaddefs.el
 	done
 	$(hide) $(INSTALL) subdirs.el "$(lispdir)"
 	@echo "Installed $(lispdir)/subdirs.el"
-	$(hide)if [ -f "$(lispdir)/loaddefs.el" ] ; then   \
-	  mv "$(lispdir)/loaddefs.el" 			\
+	$(hide)if [ -f "$(lispdir)/loaddefs.el" ] ; then	\
+	  mv "$(lispdir)/loaddefs.el" 				\
 	     "$(lispdir)/loaddefs.el.bak" &&     		\
-	  cat "$(lispdir)/loaddefs.el.bak" 		\
+	  cat "$(lispdir)/loaddefs.el.bak" 			\
 	      loaddefs.el					\
 	      > "$(lispdir)/loaddefs.el" || exit 1;		\
 	else							\
