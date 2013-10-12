@@ -216,6 +216,10 @@
 (add-hook 'dired-mode-hook 'site-dired-mode-hook)
 (setq dired-load-hook 'site-dired-load-hook)
 
+
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 (defun query-really-exit ()
   "ask the user if they really want to exit XEmacs"
   (y-or-n-p "Really exit XEmacs? ")
