@@ -55,7 +55,7 @@ ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el:
 	  ${mkdir_p} "${top_srcdir}/clones" && 		\
 	  touch "${top_srcdir}/clones/.sloccount.skip"
 	$(hide)cd ${top_srcdir}/clones &&		\
-	svn checkout svn://svn.code.sf.net/p/php-mode/code/trunk php-mode-code
+	svn checkout http://svn.code.sf.net/p/php-mode/code/trunk php-mode-code
 
 php-mode.el: ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el
 	$(hide)[ '!' -f "$@" ] || rm "$@"
