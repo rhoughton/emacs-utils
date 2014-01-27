@@ -25,7 +25,9 @@
  '(sh-indentation 2)
  '(shell-file-name "/bin/bash")
  '(show-paren-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(tooltip-mode nil)
+ )
 ;; (custom-set-faces
 ;; '(default ((t (:size "8pt" :family "Courier New"))) t))
 (custom-set-faces
