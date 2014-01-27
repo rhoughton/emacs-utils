@@ -53,7 +53,7 @@
 ; Frame & Icon title - and a bit taller
 (setq-default frame-title-format (concat "Emacs: %b@" (system-name)))
 (setq-default frame-icon-title-format (concat "Emacs: %b@" (system-name)))
-(setq default-frame-alist '((width . 80) (height . 65) (menu-bar-lines . 1)))
+(setq default-frame-alist '((width . 80) (height . 45) (menu-bar-lines . 1)))
 
 ; My Email Address
 (setq user-mail-address (or (getenv "REPLYTO")
