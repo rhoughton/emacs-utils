@@ -29,3 +29,5 @@ GNU Emacs customizations. Provides an init.el script system customized by emacs 
 #### php-mode: GNU General Public License
 #### markdown-mode: GNU General Public License
 #### cobol-mode: GNU General Public License
+
+[![endorse](https://api.coderwall.com/pahoughton/endorsecount.png)](https://coderwall.com/pahoughton)

@@ -51,8 +51,8 @@
 
 
 ; Frame & Icon title - and a bit taller
-(setq-default frame-title-format (concat "Emacs: %b@" (system-name)))
-(setq-default frame-icon-title-format (concat "Emacs: %b@" (system-name)))
+(setq-default frame-title-format (concat (system-name) ":E:%b" ))
+(setq-default frame-icon-title-format frame-title-format )
 (setq default-frame-alist '((width . 80) (height . 45) (menu-bar-lines . 1)))
 
 ; My Email Address
@@ -215,6 +215,10 @@
 
 (add-hook 'dired-mode-hook 'site-dired-mode-hook)
 (setq dired-load-hook 'site-dired-load-hook)
+
+
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 (defun query-really-exit ()
   "ask the user if they really want to exit XEmacs"
