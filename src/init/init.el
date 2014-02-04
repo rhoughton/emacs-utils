@@ -49,6 +49,9 @@
 (require 'font-lock)
 (mwheel-install)
 
+;; messes w/ frame-title
+; show me what time it is
+(display-time)
 
 ; Frame & Icon title - and a bit taller
 (setq-default frame-title-format (concat (system-name) ":E:%b" ))
@@ -120,8 +123,6 @@
 ;(add-to-list 'package-archives
 ;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
-; show me what time it is
-(display-time)
 
 (global-ede-mode t)
 ;;
