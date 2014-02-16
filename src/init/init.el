@@ -62,7 +62,7 @@
 (setq user-mail-address (or (getenv "REPLYTO")
                             "paul4hough@gmail.com"))
 
-
+(defalias 'ksh-mode 'sh-mode)
 ;; minibuffer history
 (savehist-mode 1)
 
