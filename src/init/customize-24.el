@@ -29,7 +29,8 @@
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
  )
-;; (custom-set-faces
-;; '(default ((t (:size "8pt" :family "Courier New"))) t))
 (custom-set-faces
- '(default ((t (:background "white"))) t))
+ '(default ((t (:size "8pt" :family "Courier New"))) t)
+ '(default ((t (:background "white"))) t)
+ '(region ((t (:background "cyan"))) t)
+ )
