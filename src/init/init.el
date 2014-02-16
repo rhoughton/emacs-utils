@@ -54,7 +54,7 @@
 (display-time)
 
 ; Frame & Icon title - and a bit taller
-(setq-default frame-title-format (concat (system-name) ":E:%b" ))
+(setq-default frame-title-format (concat (system-short-name) ":E:%b" ))
 (setq-default frame-icon-title-format frame-title-format )
 (setq default-frame-alist '((width . 80) (height . 45) (menu-bar-lines . 1)))
 
