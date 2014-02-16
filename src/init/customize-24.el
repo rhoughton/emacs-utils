@@ -23,6 +23,7 @@
  '(mode-compile-make-options "" t)
  '(save-place t nil (saveplace))
  '(sh-indentation 2)
+ '(sh-basic-offset 2)
  '(shell-file-name "/bin/bash")
  '(show-paren-mode t)
  '(tool-bar-mode nil)
