@@ -258,3 +258,8 @@
         )
        auto-mode-alist))
 
+(defun pah-after-init-hook ()
+  "Set the BLOODY TITLE!"
+  (setq frame-title-format (concat system-short-name ":E:%b" ))
+)
+(add-hook 'after-init-hook 'pah-after-init-hook)
