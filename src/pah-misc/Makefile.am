@@ -19,10 +19,10 @@ elisp_sources	=				\
         find-up-dir.el				\
         insert-classname.el			\
         timestamp.el				\
+	markdown-mode.el			\
         todo-mode.el
 
 clone_elisp_sources	=			\
-	markdown-mode.el			\
         php-mode.el				\
         puppet-mode.el
 
@@ -38,17 +38,6 @@ SUFFIXES 	= .elc .el
 ELCS		= $(Emacs_elisp_sources:.el=.elc)
 CLEANFILES	= $(ELCS) $(clone_elisp_sources)
 
-
-${top_srcdir}/clones/markdown-mode/markdown-mode.el: 
-	$(hide)[ -d "${top_srcdir}/clones" ] ||		\
-	  ${mkdir_p} "${top_srcdir}/clones" && 		\
-	  touch "${top_srcdir}/clones/.sloccount.skip"
-	$(hide)cd ${top_srcdir}/clones &&		\
-	git clone git://jblevins.org/git/markdown-mode
-
-markdown-mode.el: ${top_srcdir}/clones/markdown-mode/markdown-mode.el 
-	$(hide)[ '!' -f "$@" ] || rm "$@"
-	$(hide)ln -s "$^" "$@"
 
 ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el:
 	$(hide)[ -d "${top_srcdir}/clones" ] ||		\
