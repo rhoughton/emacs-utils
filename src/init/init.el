@@ -257,6 +257,10 @@
 ;       '("\\.php$" . php-mode)
         )
        auto-mode-alist))
+; No mouse on mode-line
+(global-set-key [mode-line mouse-1] 'ignore)
+(global-set-key [mode-line mouse-2] 'ignore)
+(global-set-key [mode-line mouse-3] 'ignore)
 
 (defun pah-after-init-hook ()
   "Set the BLOODY TITLE!"
