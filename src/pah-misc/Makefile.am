@@ -20,7 +20,8 @@ elisp_sources	=				\
         insert-classname.el			\
         timestamp.el				\
 	markdown-mode.el			\
-        todo-mode.el
+        todo-mode.el				\
+	xrdb-mode.el
 
 clone_elisp_sources	=			\
         php-mode.el				\
