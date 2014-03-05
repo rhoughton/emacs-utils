@@ -13,6 +13,7 @@
 ;; Customization variables
 ;;
 (custom-set-variables
+ '(Man-notify-method (quote newframe))
  '(cvs-display-full-path nil)
  '(cvs-edit-confirm (quote changed))
  '(debug-on-error t)
@@ -30,7 +31,5 @@
  '(tooltip-mode nil)
  )
 (custom-set-faces
- '(default ((t (:size "8pt" :family "Courier New"))) t)
- '(default ((t (:background "white"))) t)
- '(region ((t (:background "cyan"))) t)
- )
+ '(default ((t (:size "8pt" :family "Courier New"))))
+ '(region ((t (:background "cyan")))))
