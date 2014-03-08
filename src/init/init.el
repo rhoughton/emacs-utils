@@ -24,12 +24,6 @@
                           ".el"))
 
 (load-file custom-file)
-;(let ((real-custom-file custom-file))
-  ;(setq custom-file "nonsense")
-  ;(load-file real-custom-file)
-  ;; (add-hook 'after-init-hook
-  ;;        `(lambda () (setq custom-file real-custom-file)))
-  ;;)
 
 (add-to-list 'load-path (concat dotedir "/lisp"))
 
@@ -246,6 +240,7 @@
         '("\\.ddl$"     . sql-mode)
         '("\\.xml$"     . xml-mode)
         '("\\.pp$"      . puppet-mode)
+	'("Rakefile"    . ruby-mode)
 ;       '("status" . text-mode)
 ;       '("^log" . text-mode)
 ;       '("\\.dcl$" . dtd-mode)
