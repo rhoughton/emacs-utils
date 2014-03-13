@@ -246,6 +246,7 @@
         '("\\.ddl$"     . sql-mode)
         '("\\.xml$"     . xml-mode)
         '("\\.pp$"      . puppet-mode)
+	'("Rakefile"    . ruby-mode)
 ;       '("status" . text-mode)
 ;       '("^log" . text-mode)
 ;       '("\\.dcl$" . dtd-mode)
