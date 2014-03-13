@@ -247,6 +247,7 @@
         '("\\.xml$"     . xml-mode)
         '("\\.pp$"      . puppet-mode)
 	'("Rakefile"    . ruby-mode)
+	'("Puppetfile"  . ruby-mode)
 ;       '("status" . text-mode)
 ;       '("^log" . text-mode)
 ;       '("\\.dcl$" . dtd-mode)
