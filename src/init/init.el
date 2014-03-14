@@ -201,6 +201,10 @@
 	(local-set-key    (kbd "<S-f8>")    'fume-prompt-function-goto))))
 
 ;;
+;; auto remove trailing white
+;;
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;;
 ;; Dired
 ;;
 
