@@ -195,6 +195,10 @@
 	(local-set-key    (kbd "<S-f8>")    'fume-prompt-function-goto))))
 
 ;;
+;; auto remove trailing white
+;;
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;;
 ;; Dired
 ;;
 
@@ -241,6 +245,7 @@
         '("\\.xml$"     . xml-mode)
         '("\\.pp$"      . puppet-mode)
 	'("Rakefile"    . ruby-mode)
+	'("Puppetfile"  . ruby-mode)
 ;       '("status" . text-mode)
 ;       '("^log" . text-mode)
 ;       '("\\.dcl$" . dtd-mode)
