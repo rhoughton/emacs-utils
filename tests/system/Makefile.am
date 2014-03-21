@@ -20,7 +20,7 @@ test_files := $(wildcard test-*.el)
 check:
 
 test-system-real:
-	DEBUG=$DEBUG bash test-system.bash $(abs_top_srcdir) $(lispdir)
+	DEBUG=${DEBUG} bash test-system.bash $(abs_top_srcdir) $(lispdir)
 
 
 %:
