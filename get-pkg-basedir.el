@@ -4,10 +4,10 @@
 ;;  Desc:
 ;;
 ;;	Return the base package dir for XEmacs or GNU Emacs
-;;  
+;;
 ;;  Author(s):   Paul Houghton <paul4hough@gmail.com>
 ;;  Created:     05/27/2003 07:18
-;;  
+;;
 (defun get-pkg-basedir ()
   "Return the base dir for installing elisp packages"
   (setq pkg-base-dir "")
@@ -16,7 +16,7 @@
 	      (and (= emacs-major-version 21)
 		   (>= emacs-minor-version 1)))
 	  ( ;; Xemacs ver >= 21.1
-	   
+
 	   let* ((tmp-pkg-base-dir
 		  (directory-file-name
 		   (file-name-directory
@@ -38,6 +38,6 @@
 	  (setq pkg-base-dir (substring (car load-path) 0 (match-end 0)))
 	  (if (not (file-writable-p pkg-base-dir))
 	      (setq pkg-base-dir (concat (getenv "HOME") "/.emacs.d/lisp"))))
-      (setq pkg-base-dir ""))
+      (setq pkg-base-dir (concat (getenv "HOME") "/.emacs.d/lisp")))
     )
 )
