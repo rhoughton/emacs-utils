@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	emacs-utils 
+# Project:	emacs-utils
 # Desc:
 #
 #   automake source for Makefile.in
@@ -8,6 +8,8 @@
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     07/05/2003 07:49
 #
+# svn checkout http://svn.code.sf.net/p/php-mode/code/trunk php-mode-code
+# git clone https://github.com/puppetlabs/puppet-syntax-emacs
 
 hide = @
 
@@ -19,13 +21,11 @@ elisp_sources	=				\
         find-up-dir.el				\
         insert-classname.el			\
         timestamp.el				\
+        php-mode.el				\
+        puppet-mode.el
 	markdown-mode.el			\
         todo-mode.el				\
 	xrdb-mode.el
-
-clone_elisp_sources	=			\
-        php-mode.el				\
-        puppet-mode.el
 
 Emacs_elisp_sources	=			\
 	$(elisp_sources)			\
@@ -40,27 +40,7 @@ ELCS		= $(Emacs_elisp_sources:.el=.elc)
 CLEANFILES	= $(ELCS) $(clone_elisp_sources)
 
 
-${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el:
-	$(hide)[ -d "${top_srcdir}/clones" ] ||		\
-	  ${mkdir_p} "${top_srcdir}/clones" && 		\
-	  touch "${top_srcdir}/clones/.sloccount.skip"
-	$(hide)cd ${top_srcdir}/clones &&		\
-	svn checkout http://svn.code.sf.net/p/php-mode/code/trunk php-mode-code
 
-php-mode.el: ${top_srcdir}/clones/php-mode-code/php-mode-src/php-mode.el
-	$(hide)[ '!' -f "$@" ] || rm "$@"
-	$(hide)ln -s "$^" "$@"
-
-${top_srcdir}/clones/puppet-syntax-emacs/puppet-mode.el:
-	$(hide)[ -d "${top_srcdir}/clones" ] ||		\
-	  ${mkdir_p} "${top_srcdir}/clones" && 		\
-	  touch "${top_srcdir}/clones/.sloccount.skip"
-	$(hide)cd ${top_srcdir}/clones &&		\
-	git clone https://github.com/puppetlabs/puppet-syntax-emacs
-
-puppet-mode.el: ${top_srcdir}/clones/puppet-syntax-emacs/puppet-mode.el
-	$(hide)[ '!' -f "$@" ] || rm "$@"
-	$(hide)ln -s "$^" "$@"
 
 .el.elc:
 	$(hide)$(EMACS) -batch -q				     \
@@ -102,5 +82,5 @@ all: $(ELCS) cus-load.el loaddefs.el
 check: all
 install-data-hook: all Emacs_install
 
-%: 
+%:
 	$(MAKE) -C .. $@

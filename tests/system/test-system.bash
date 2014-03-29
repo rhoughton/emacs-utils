@@ -1,4 +1,4 @@
-#
+#!/bin/bash
 # File:	    test-system.bash
 # Project:  emacs-utils
 # Desc:
@@ -9,7 +9,7 @@
 # Created:     2013-10-08 11:12
 #
 
-#set -x
+test -n "$DEBUG" && set -x
 
 topdir=$1
 if [ -z "$topdir" ] ; then
@@ -31,7 +31,7 @@ TEST_HOME=`pwd`/test_home
 tar xf ../emacs-utils*tar.gz
 cd emacs-utils*
 HOME="${TEST_HOME}"
-autoreconf && 
+autoreconf &&
 ./configure --with-lispdir="${TEST_HOME}/.emacs.d/lisp" &&
 make install || exit 1
 # double install works? (had a bug w/ this b4)
@@ -70,12 +70,11 @@ else
   echo "  FAILED to provide init customization"
   results=1
 fi
-
+# todo markdown-mode
 basic_functions='
 cobol-mode
 insert-classname
 insert-timestamp
-markdown-mode
 php-mode
 puppet-mode
 todo-mode
