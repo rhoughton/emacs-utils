@@ -32,4 +32,6 @@
  )
 (custom-set-faces
  '(default ((t (:size "8pt" :family "Courier New"))))
+;; '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 80 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+;; '(default ((t (:size "8pt" :family "Courier New"))))
  '(region ((t (:background "cyan")))))
