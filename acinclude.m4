@@ -25,7 +25,7 @@ AC_DEFUN([PAH_PATH_LISPDIR],
         AC_RUN_LOG([$EMACS -batch -q -l ${srcdir}/get-pkg-basedir.el -eval '(princ (get-pkg-basedir))' 2> /dev/null >conftest.out])
         pah_cv_lispdir=`echo \`cat conftest.out\``
         rm conftest.out
-        if test -z "$pah_cv_lispdir"; then
+        if test -z "$pah_cv_lispdir" -o ! -w -z "$pah_cv_lispdir"; then
           pah_cv_lispdir='${datadir}/emacs/site-lisp'
         fi
        ])
@@ -34,5 +34,3 @@ AC_DEFUN([PAH_PATH_LISPDIR],
     ])
   AC_SUBST(lispdir)
 ])# PAH_PATH_LISPDIR
-
-

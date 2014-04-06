@@ -15,7 +15,7 @@
 (if (string-match "XEmacs\\|Lucid" emacs-version)
     (setq dotedir (concat (getenv "HOME") "/.xemacs"))
   (setq dotedir (concat (getenv "HOME") "/.emacs.d")))
-   
+
 (setq inhibit-startup-message t)
 
 (setq custom-file (concat dotedir
@@ -167,7 +167,7 @@
 
 (defun site-c++-mode-hook ()
   (if (string-match "XEmacs" (emacs-version))
-      (progn 
+      (progn
 	(local-set-key 'f2            'insert-classname)
 	(local-set-key '(shift f2)    'insert-classname-inline)
 	(local-set-key '(control f2)  'insert-classname-template))
@@ -184,7 +184,7 @@
 
 (defun my-cperl-hook ()
   (if (string-match "XEmacs" (emacs-version))
-      (progn 
+      (progn
 	(local-set-key    '[(control h) (f)]  'cperl-perldoc-at-point)
 	(local-set-key    'f8                 'fume-add-menubar-entry)
 	(local-set-key    '(shift f8)         'fume-prompt-function-goto)
@@ -254,7 +254,7 @@
 ;       '("\\.ele$" . dtd-mode)
 ;       '("\\.ent$" . dtd-mode)
 ;       '("\\.mod$" . dtd-mode)
-;       '("\\.php$" . php-mode)
+       '("\\.php$" . php-mode)
         )
        auto-mode-alist))
 ; No mouse on mode-line
