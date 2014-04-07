@@ -22,7 +22,7 @@ elisp_sources	=				\
         insert-classname.el			\
         timestamp.el				\
         php-mode.el				\
-        puppet-mode.el
+        puppet-mode.el				\
 	markdown-mode.el			\
         todo-mode.el				\
 	xrdb-mode.el
