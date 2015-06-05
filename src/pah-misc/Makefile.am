@@ -25,7 +25,8 @@ elisp_sources	=				\
         puppet-mode.el				\
 	markdown-mode.el			\
         todo-mode.el				\
-	xrdb-mode.el
+	xrdb-mode.el				\
+	yaml-mode.el
 
 Emacs_elisp_sources	=			\
 	$(elisp_sources)			\
