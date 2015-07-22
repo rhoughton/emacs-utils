@@ -242,8 +242,10 @@
         '("^make\\.cfg" . makefile-mode)
         '("\\.sql$"     . sql-mode)
         '("\\.ddl$"     . sql-mode)
-        '("\\.xml$"     . xml-mode)
+	'("\\.php$"     . php-mode)
         '("\\.pp$"      . puppet-mode)
+	'("\\.xml$"     . xml-mode)
+	'("\\.yml$"     . yaml-mode)
 	'("Rakefile"    . ruby-mode)
 	'("Puppetfile"  . ruby-mode)
 ;       '("status" . text-mode)
@@ -254,7 +256,7 @@
 ;       '("\\.ele$" . dtd-mode)
 ;       '("\\.ent$" . dtd-mode)
 ;       '("\\.mod$" . dtd-mode)
-       '("\\.php$" . php-mode)
+
         )
        auto-mode-alist))
 ; No mouse on mode-line
