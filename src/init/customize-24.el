@@ -23,6 +23,7 @@
  '(explicit-bash-args (quote ("-li")))
  '(mode-compile-make-options "" t)
  '(save-place t nil (saveplace))
+ '(perl-indent-level 2)
  '(sh-indentation 2)
  '(sh-basic-offset 2)
  '(perl-indent-level 2)
