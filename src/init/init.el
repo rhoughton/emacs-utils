@@ -118,7 +118,7 @@
 ;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 
-(global-ede-mode t)
+;; (global-ede-mode t)
 ;;
 ;; Keyboard customizations
 ;;
