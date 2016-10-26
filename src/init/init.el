@@ -12,9 +12,7 @@
 ;;
 ;; We need to load custom before initialization
 ;;
-(if (string-match "XEmacs\\|Lucid" emacs-version)
-    (setq dotedir (concat (getenv "HOME") "/.xemacs"))
-  (setq dotedir (concat (getenv "HOME") "/.emacs.d")))
+(setq dotedir (concat (getenv "HOME") "/.emacs.d"))
 
 (setq inhibit-startup-message t)
 
@@ -265,7 +263,7 @@
 (global-set-key [mode-line mouse-3] 'ignore)
 
 (defun pah-after-init-hook ()
-  "Set the BLOODY TITLE!"
-  (setq frame-title-format (concat system-short-name ":E:%b" ))
+  "Set the bloody title"
+  (setq frame-title-format "womac:E:%b" )
 )
 (add-hook 'after-init-hook 'pah-after-init-hook)
