@@ -20,6 +20,7 @@
  '(display-time-mode t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(explicit-bash-args (quote ("-li")))
+ '(js-indent-level 2)
  '(Man-notify-method (quote newframe))
  '(mode-compile-make-options "" t)
  '(perl-indent-level 2)
