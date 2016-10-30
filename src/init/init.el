@@ -264,6 +264,6 @@
 
 (defun pah-after-init-hook ()
   "Set the bloody title"
-  (setq frame-title-format "womac:E:%b" )
+  (setq frame-title-format (concat system-short-name ":E:%b" ))
 )
 (add-hook 'after-init-hook 'pah-after-init-hook)
