@@ -9,10 +9,11 @@
 ;;  Created:     05/27/2010 09:52
 ;;
 
-(defvar system-short-name (replace-regexp-in-string
-			   "\\..*"
-			   ""
-			   (system-name)))
+(defvar system-short-name (or (getenv "host")
+			      (replace-regexp-in-string
+			       "\\..*"
+			       ""
+			       (system-name))))
 
 (setq system-cc-search-directories (list "/usr/include"))
 ;
