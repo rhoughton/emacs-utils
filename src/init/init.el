@@ -1,17 +1,9 @@
-;;
-;;  File:       init.el
-;;  Project:    emacs-utils
-;;  Desc:
-;;
-;;      Common emacs initialization
-;;
-;;  Author(s):   Paul Houghton <paul4hough@gmail.com>
-;;  Created:     08/17/2001 13:20
+;; 2001-08-17 (cc)  Paul Houghton <paul4hough@gmail.com>
 ;;
 
-;;
-;; We need to load custom before initialization
-;;
+
+;; load custom before initialization
+
 (setq dotedir (concat (getenv "HOME") "/.emacs.d"))
 
 (setq inhibit-startup-message t)
@@ -237,13 +229,13 @@
         '("\\.ii$"      . c++-mode)
         '("\\.mk$"      . makefile-mode)
         '("\\.mak$"     . makefile-mode)
-        '("^make\\.cfg" . makefile-mode)
         '("\\.sql$"     . sql-mode)
         '("\\.ddl$"     . sql-mode)
 	'("\\.php$"     . php-mode)
         '("\\.pp$"      . puppet-mode)
 	'("\\.xml$"     . xml-mode)
 	'("\\.yml$"     . yaml-mode)
+	'("\\.3[A-Za-z]" . nroff-mode)
 	'("Rakefile"    . ruby-mode)
 	'("Puppetfile"  . ruby-mode)
 ;       '("status" . text-mode)

@@ -24,10 +24,11 @@ GNU Emacs customizations. Provides an init.el script system customized by emacs 
 
 ## Licenses
 
-#### emacs-utils: [![LICENSE](http://i.creativecommons.org/l/by/3.0/88x31.png)](http://creativecommons.org/licenses/by/3.0/)
-#### puppet-mode: http://www.apache.org/licenses/LICENSE-2.0
-#### php-mode: GNU General Public License
-#### markdown-mode: GNU General Public License
-#### cobol-mode: GNU General Public License
+1995-11-13 (cc)  Paul Houghton <paul4hough@gmail.com>
 
-[![endorse](https://api.coderwall.com/pahoughton/endorsecount.png)](https://coderwall.com/pahoughton)
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img alt="Creative Commons License" style="border-width:0"
+src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+</a>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+Creative Commons Attribution 4.0 International License</a>.

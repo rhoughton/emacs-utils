@@ -1,13 +1,4 @@
-#
-# File:		acinclude.m4
-# Project:	emacs-utils
-# Desc:
-#
-#   Project specific m4 macros
-#
-# Author(s):   Paul Houghton <paul4hough@gmail.com>
-# Created:     06/01/2003 07:07
-#
+# 2003-06-01 (cc) Paul Houghton <paul4hough@gmail.com>
 
 AC_DEFUN([PAH_PATH_LISPDIR],
 [AC_ARG_WITH(lispdir,
@@ -25,8 +16,8 @@ AC_DEFUN([PAH_PATH_LISPDIR],
         AC_RUN_LOG([$EMACS -batch -q -l ${srcdir}/get-pkg-basedir.el -eval '(princ (get-pkg-basedir))' 2> /dev/null >conftest.out])
         pah_cv_lispdir=`echo \`cat conftest.out\``
         rm conftest.out
-        if test -z "$pah_cv_lispdir" -o ! -w "$pah_cv_lispdir"; then
-          pah_cv_lispdir='${datadir}/emacs/site-lisp'
+        if test -z "$pah_cv_lispdir"; then
+	  pah_cv_lispdir='${datadir}/emacs/site-lisp'
         fi
        ])
        lispdir="$pah_cv_lispdir"

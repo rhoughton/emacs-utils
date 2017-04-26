@@ -1,17 +1,7 @@
-#
-# File:		Makefile.am
-# Project:	emacs-utils
-# Desc:
-#
-#   automake source for Makefile.in
-#
-# Author(s):   Paul Houghton <paul4hough@gmail.com>
-# Created:     07/05/2003 07:39
-#
+# 2003-07-05 (cc) Paul Houghton <paul4hough@gmail.com>
 
 EXTRA_DIST	=			\
 	get-pkg-basedir.el		\
-	LICENSE				\
 	README.md
 
 SUBDIRS	= src tests/unit tests/system

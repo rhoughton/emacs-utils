@@ -8,7 +8,7 @@
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     07/05/2003 07:55
 #
-SUBDIRS	= pah-misc init
+SUBDIRS	= init pah-misc
 
-%: 
+%:
 	$(MAKE) -C .. $@
