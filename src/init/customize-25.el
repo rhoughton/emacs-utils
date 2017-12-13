@@ -13,6 +13,10 @@
  '(js-indent-level 2)
  '(Man-notify-method (quote newframe))
  '(mode-compile-make-options "" t)
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))))
  '(perl-indent-level 2)
  '(save-place t nil (saveplace))
  '(sh-basic-offset 2)
