@@ -254,6 +254,10 @@
 (global-set-key [mode-line mouse-2] 'ignore)
 (global-set-key [mode-line mouse-3] 'ignore)
 
+;; melpa emacs pkg repo
+(add-to-list 'package-archives
+'("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+
 (defun pah-after-init-hook ()
   "Set the bloody title"
   (setq frame-title-format (concat system-short-name ":E:%b" ))
