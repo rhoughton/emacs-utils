@@ -17,6 +17,8 @@
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))))
+ ;; may need to install first ?
+ '(package-selected-packages (quote (go-mode)))
  '(perl-indent-level 2)
  '(save-place t nil (saveplace))
  '(sh-basic-offset 2)

@@ -121,14 +121,16 @@
            (define-key global-map '(meta c)     'kill-ring-save)
            (define-key global-map '(meta v)     'yank)
            (global-unset-key '(control z)))
-  (progn  (global-set-key (kbd "<RET>")    'newline-and-indent)
-          (global-set-key (kbd "<f10>")    'compile)
+  (progn  (global-set-key (kbd "<RET>")  'newline-and-indent)
+	  (global-set-key (kbd "<f5>")   'insert-timestamp)
+          (global-set-key (kbd "<f10>")  'compile)
+          (global-set-key (kbd "<f12>")  'find-header)
           (global-set-key (kbd "<M-f5>") 'template-insert)
-          (global-set-key (kbd "<f12>")    'find-header)
           (global-set-key (kbd "M-c")    'kill-ring-save)
           (global-set-key (kbd "M-v")    'yank)
           (global-set-key (kbd "M-a")    'mark-whole-buffer)
-          (global-unset-key (kbd "C-z")))
+          (global-unset-key (kbd "C-z"))
+	  )
   )
 ;;
 ;; C, C++ & ObjC Customizations
@@ -183,6 +185,7 @@
 	(local-set-key    (kbd "C-h f")	    'cperl-perldoc-at-point)
 	(local-set-key    (kbd "<f8>")	    'fume-add-menubar-entry)
 	(local-set-key    (kbd "<S-f8>")    'fume-prompt-function-goto))))
+
 
 ;;
 ;; auto remove trailing white
@@ -254,9 +257,6 @@
 (global-set-key [mode-line mouse-2] 'ignore)
 (global-set-key [mode-line mouse-3] 'ignore)
 
-;; melpa emacs pkg repo
-(add-to-list 'package-archives
-'("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
 
 (defun pah-after-init-hook ()
   "Set the bloody title"
