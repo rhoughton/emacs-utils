@@ -257,9 +257,9 @@
 (global-set-key [mode-line mouse-2] 'ignore)
 (global-set-key [mode-line mouse-3] 'ignore)
 
-
 (defun pah-after-init-hook ()
   "Set the bloody title"
   (setq frame-title-format (concat system-short-name ":E:%b" ))
-)
+  )
+
 (add-hook 'after-init-hook 'pah-after-init-hook)
