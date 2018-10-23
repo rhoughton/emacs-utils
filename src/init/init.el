@@ -4,30 +4,30 @@
 
 ;; load custom before initialization
 
-(setq dotedir (concat (getenv "HOME") "/.emacs.d"))
+(defvar init-dotedir (concat (getenv "HOME") "/.emacs.d"))
 
 (setq inhibit-startup-message t)
 
-(setq custom-file (concat dotedir
+(setq custom-file (concat init-dotedir
                           "/customize-"
                           (number-to-string emacs-major-version)
                           ".el"))
 
 (load-file custom-file)
 
-(add-to-list 'load-path (concat dotedir "/lisp"))
+(add-to-list 'load-path (concat init-dotedir "/lisp"))
 
 (setq cwd default-directory)
-(setq default-directory (concat dotedir "/lisp"))
+(setq default-directory (concat init-dotedir "/lisp"))
 (add-to-list 'load-path (normal-top-level-add-subdirs-to-load-path))
 (setq default-directory cwd)
-(load (concat dotedir "/lisp/loaddefs"))
+(load (concat init-dotedir "/lisp/loaddefs"))
 
 ; ugg system-type is gnu/linux on fedora
 (defvar init-sys-type (format "%s" system-type))
 (if (string-match-p "linux" init-sys-type)
     (setq init-sys-type "linux"))
-(load (concat dotedir "/init-" init-sys-type))
+(load (concat init-dotedir "/init-" init-sys-type))
 
 (require 'dired)
 (require 'font-lock)
@@ -133,11 +133,8 @@
 	  )
   )
 ;;
-;; C, C++ & ObjC Customizations
+;; c, c++ & objc customizations
 ;;
-
-
-(require 'cc-mode)
 (defun site-c-mode-common-hook ()
   (font-lock-mode)
   (setq c-basic-offset 2)
@@ -201,7 +198,6 @@
   )
 
 (defun site-dired-mode-hook ()
-  (setq dired-omit-files-p t)
   (setq truncate-lines t)
   )
 
