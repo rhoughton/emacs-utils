@@ -21,12 +21,13 @@ results=0
 
 # Setup and install into testing dir
 cd "${topdir}"
-[ -d test_tmp/emacs-utils* ] && rm -rf test_tmp/emacs-utils*
+[ -d tests_tmp/emacs-utils* ] && rm -rf tests_tmp
+mkdir tests_tmp
 make dist
-cd test_tmp
-[ -d test_home ] && rm -rf test_home
-mkdir test_home
-TEST_HOME=`pwd`/test_home
+cd tests_tmp
+[ -d tests_home ] && rm -rf tests_home
+mkdir tests_home
+TEST_HOME=`pwd`/tests_home
 
 tar xf ../emacs-utils*tar.gz
 cd emacs-utils*

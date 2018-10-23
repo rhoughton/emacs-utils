@@ -11,5 +11,5 @@ _pkg.el
 auto-autoloads.el
 custom-load.el
 emacs-utils*tar.gz
-test_tmp
+tests_tmp
 .vagrant

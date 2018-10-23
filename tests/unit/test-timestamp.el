@@ -1,4 +1,4 @@
-(load-file "../../test_tmp/emacs-test-simple/test-simple.el")
+(load-file "../../tests_tmp/emacs-test-simple/test-simple.el")
 (setq load-path (append '("../../src/pah-misc") load-path))
 (test-simple-start "test for timestamp.el")
 (assert-t (load-file "../../src/pah-misc/timestamp.el")
