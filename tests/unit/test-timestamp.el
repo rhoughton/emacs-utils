@@ -1,8 +1,9 @@
-(load-file "../../tests_tmp/emacs-test-simple/test-simple.el")
-(setq load-path (append '("../../src/pah-misc") load-path))
-(test-simple-start "test for timestamp.el")
-(assert-t (load-file "../../src/pah-misc/timestamp.el")
-	  "require timestamp failed")
-(assert-t (timestamp)
-	  "timestamp function returned nil")
-(end-tests)
+;; 2013-10-09 (cc) <paul4hough@gmail.com>
+
+(ert-deftest test-timestamp ()
+  "validate timestamp function"
+  (should (load-file "../../src/pah-misc/timestamp.el"))
+  (should (eql (string-match
+		(concat "^[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]"
+			" [0-2][0-9]:[0-5][0-9]$")
+		(timestamp)) 0)))
