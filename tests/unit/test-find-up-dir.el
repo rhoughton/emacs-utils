@@ -4,7 +4,7 @@
   "validate find-up-dir function"
   (should (load-file "../../src/pah-misc/find-up-dir.el"))
   (let ((pat "found")
-	(fpath (concat default-directory ".testing/dira"))
+	(fpath (concat (file-truename default-directory) ".testing/dira"))
 	(spath nil))
     (setq spath (concat fpath "/" pat "/db/dirc"))
     (make-directory spath 1)
@@ -16,4 +16,3 @@
     (should (equal (find-up-dir pat) fpath))
     (should (eql (find-up-dir "not likely to find") nil))
     ))
-
