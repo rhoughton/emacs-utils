@@ -19,6 +19,7 @@ elisp_sources	=				\
         find-executable.el			\
         find-header.el				\
         find-up-dir.el				\
+        go-mode.el				\
         insert-classname.el			\
         timestamp.el				\
         php-mode.el				\
