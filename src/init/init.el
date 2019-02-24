@@ -214,6 +214,11 @@
   )
 
 (add-hook 'kill-emacs-query-functions 'query-really-exit)
+; go mode
+(defun pah-tab-width ()
+  (setq tab-width 4)
+  )
+(add-hook 'go-mode-hook 'pah-tab-width)
 
 ;
 ; Psgml
