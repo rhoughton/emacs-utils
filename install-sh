@@ -385,11 +385,6 @@ do
       )
     then :
     else
-
-      # The umask is ridiculous, or mkdir does not conform to POSIX,
-      # or it failed possibly due to a race condition.  Create the
-      # directory the slow way, step by step, checking for races as we go.
-
       case $dstdir in
 	/*) prefix='/';;
 	[-=\(\)!]*) prefix='./';;
